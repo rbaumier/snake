@@ -16,6 +16,11 @@ Afin d’atteindre la fin du niveau, le joueur doit éviter tout contact avec :
 Seule la tête du snake peut être déplacée par le joueur, le reste du corps suit suivant les
 mouvements de la tête.
 
+<p align="center">
+  <img src="./docs/waow.gif"/>
+</p>
+
+
 ### Format du jeu
 
 Le plateau du jeu est un carré de 50 cases de côté.
@@ -24,13 +29,16 @@ Modes de jeu :
 - Survival Mode
 - Arcade Mode
 
-#### Survival Mode :
+
+#### Survival Mode
 
 Choisissez votre niveau et essayer d’atteindre le plus haut score possible sans entrer en collision avec un mur ou le corps du serpent.
 
-#### Arcade Mode :
+
+#### Arcade Mode
 
 Vous commencez au niveau 1 et devez atteindre le score de 25 pour passer au niveau suivant. Le fait de passer au niveau supérieur augmente petit à petit la difficulté.
+
 
 ### Itérations
 
@@ -42,7 +50,6 @@ Vous commencez au niveau 1 et devez atteindre le score de 25 pour passer au nive
 
 
 ## Infographie (définition mathématique de la réprésentation graphique des objets du modèle)
-
 
 un fruit ne peut pas apparaitre sur une case occupée par :
 - un mur
