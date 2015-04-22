@@ -53,7 +53,7 @@ Vous commencez au niveau 1 et devez atteindre le score de 25 pour passer au nive
 
 ## Modèle
 ```
-**Fruit** {
+Fruit {
   // Le fruit doit être mangé par le snake. Il n’y en aura qu’un seul sur le monde à chaque fois. Le fait de le manger va augmenter le score du joueur, la taille du snake de 1 et va replacer un nouveau fruit  à un endroit aléatoire sur le monde.
   x: Int // position honrizontale du fruit dans le monde)
   y: Int // position verticale du fruit dans le monde)
@@ -61,7 +61,7 @@ Vous commencez au niveau 1 et devez atteindre le score de 25 pour passer au nive
   respawn(): // supprime le fruit existant (si il existe) et en place un nouveau sur le monde de façon aléatoire.
 }
 
-**Snake** {
+Snake {
   // Le snake est l’élément principal du jeu, il y en un seul sur le monde et il est de taille variable, il grandit pour chaque fruit mangé. Le snake est contrôlé directement par le joueur.
  cells: Array<Cell>
  direction: U | R | D | L (Up: y+1, Right: x+1, Down: y-1, Left: x-1), L par défaut
@@ -72,7 +72,7 @@ Vous commencez au niveau 1 et devez atteindre le score de 25 pour passer au nive
   grow(): void // Augmente la taille du serpent d’une unité de longueur. Cette ajout se fera derrière la tete du serpent.
 }
 
-**Cell** {
+Cell {
   // Une cellule, le monde en est composé. Elle peut être vide, occupée par le serpent ou le fruit.
   x: Int // position honrizontale de la cellule dans le monde
   y: Int // position verticale de la cellule dans le monde
@@ -81,7 +81,7 @@ Vous commencez au niveau 1 et devez atteindre le score de 25 pour passer au nive
   isEmpty(): boolean // Retourne true si la cellule est vide, false dans le cas contraire.
 }
 
-**World** {
+World {
   // Le monde où evolue le snake. Il est composé de cellules. L’ensemble de ses déplacements se fait à l’intérieur de ce monde. En cas de sortie de celui-ci, la partie est terminée.
   width: Int  // Largeur du monde
   height: Int // longueur du monde
@@ -92,13 +92,13 @@ Vous commencez au niveau 1 et devez atteindre le score de 25 pour passer au nive
   fill(): void // rempli le monde de cellules
 }
 
-**Player** {
+Player {
   // Le joueur de la partie.
   score: Int // Score du joueur (Thanks Captain Obvious!)
 
 }
 
-**Timer** (Thread) {
+Timer (Thread) {
   // Ce thread aura une fonction de décompte du temps. Il sera exécuté en parallèle du thread principal.
   speed: Int
 
