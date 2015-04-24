@@ -51,6 +51,7 @@ Vous commencez au niveau 1 et devez atteindre le score de 25 pour passer au nive
 - Consulter les meilleurs scores depuis le menu principal.
 
 
+
 ## Modèle
 ```
 Fruit {
@@ -146,7 +147,9 @@ Déplacement avec comme direction D (Snake complexe):
 |   |   |   |   |   |                |   |   |   |   |   |
       avant                                  après
 ```
-## Infographie (définition mathématique de la réprésentation graphique des objets du modèle)
+
+
+## Infographie
 
 ### Écrans
 
@@ -154,7 +157,25 @@ Déplacement avec comme direction D (Snake complexe):
   <img src="./docs/screens.jpg"/>
 </p>
 
-un fruit ne peut pas apparaitre sur une case occupée par :
+### Règles
+Le monde sera composé de 600 cases. Il fera 30 cases de hauteur et 20 cases de largeur.
+- mode arcade : Le but de ce mode de jeu est d'atteindre le niveau le plus élevé possible. Le serpent augmente à chaque fruit mangé.
+Le niveau augmente tous les 25 fruits mangés. Des murs sont générés automatiquement et de façon aléatoire sur la carte.
+Un mur prend une case de largeur. Plus le niveau est élevé, plus les murs seront nombreux.
+Les murs seront placés de façon à ce que le fruit soit toujours atteignable par le snake sans mourir (comprendre qu'il ne peut pas y avoir de voies sans issues).
+- mode survival : il consiste à tenir le plus longtemps possible sur la map, qui prend tout l'écran, sans murs, et ne se renouvèle pas.
+Le serpent grossit d'une cases à chaque fois qu'il mange le fruit.
+
+Le snake ne peut se déplacer que sur des cases vides ou occupées par un fruit. Il ne peut se déplacer que d'une case à la fois (vers le haut, le bas, la gauche ou la droite).
+Les cases occupées par le snake seront représentées d'une couleur différente des cases vides.
+Dans le cas où le snake a occupé toutes les cases du monde, un message sera affiché "Félicitations, vous avez gagné".
+
+Le fruit occupe une seule case à la fois. Il fait une case de longueur et sera représenté par une couleur ou image différente.
+Un fruit ne peut pas apparaitre sur une case occupée par :
 - un mur
 - le corps ou la tete du snake
+
+Les "High scores" comprennent les 10 meilleurs scores classés par ordre décroissant. Il y en a 10 au maximum.
+Dans le cas où il n'y a aucun score d'enregistré, un message "Pas de score" sera affiché.
+La longueur d'un pseudo sera de 20 charactères maximum. Les "scores" pourront être remis à zéro via le bouton "reset" présent dans les paramètres de l'application.
 
