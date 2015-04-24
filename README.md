@@ -155,6 +155,12 @@ Déplacement avec comme direction D (Snake complexe):
 
 ## Infographie (définition mathématique de la réprésentation graphique des objets du modèle)
 
+### Écrans
+
+<p align="center">
+  <img src="./docs/screens.jpg"/>
+</p>
+
 un fruit ne peut pas apparaitre sur une case occupée par :
 - un mur
 - le corps ou la tete du snake
