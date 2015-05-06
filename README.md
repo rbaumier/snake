@@ -179,3 +179,15 @@ Les "High scores" comprennent les 10 meilleurs scores classés par ordre décroi
 Dans le cas où il n'y a aucun score d'enregistré, un message "Pas de score" sera affiché.
 La longueur d'un pseudo sera de 20 charactères maximum. Les "scores" pourront être remis à zéro via le bouton "reset" présent dans les paramètres de l'application.
 
+### Position des éléments
+Afin de dessiner notre board (qui contiendra les cases du jeu), nous effectuerons les calculs suivants (pseudo-code) :
+```
+largeurCase = largeurEcran / nombreCasesLargeur
+hauteurCase = hauteurEcran / nombreCasesHauteur
+
+pour(x de 1 à nombreCasesLargeur) {
+  pour(y de 1 à nombreCasesHauteur) {
+    dessinerCarré(x*largeurCase, y*hauteurCase)
+  }
+}
+```
