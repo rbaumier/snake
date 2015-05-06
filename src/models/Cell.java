@@ -1,17 +1,23 @@
 package models;
 
 public class Cell {
-  private int x; // honrizontal
-  private int y; // vertical
-  private State state = State.empty;
-  private enum State {
+  public int x; // honrizontal
+  public int y; // vertical
+  public State state;
+  public enum State {
     empty,
     fruit,
     head,
     tail
   }
 
-  private boolean isEmpty() {
+  public Cell(int x, int y) {
+    this.x = x;
+    this.y = y;
+    this.state = State.empty;
+  }
 
+  public boolean isEmpty() {
+    return this.state == State.empty;
   }
 }

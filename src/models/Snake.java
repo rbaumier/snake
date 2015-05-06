@@ -3,9 +3,9 @@ package models;
 import java.util.ArrayList;
 
 public class Snake {
-  private ArrayList<Cell> body = new ArrayList<Cell>();
-  private Direction direction = Direction.L;
-  private enum Direction {
+  public ArrayList<Cell> body = new ArrayList<Cell>();
+  public Direction direction;
+  public enum Direction {
     U, // Up -> y+1
     R, // Right -> x+1
     D, // Down -> y-1
@@ -14,22 +14,23 @@ public class Snake {
 
   public Snake(ArrayList<Cell> body) {
     this.body = body; // size 3 at the center
+    this.direction = Direction.L;
     this.spawn();
   }
 
-  private void spawn() {
+  public void spawn() {
 
   }
 
-  private void move(int x, int y) {
+  public void move(int x, int y) {
 
   }
 
-  private void eat() {
-
+  public void eat() {
+    grow();
   }
 
-  private void grow() {
+  public void grow() {
 
   }
 }
