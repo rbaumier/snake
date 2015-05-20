@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Game mode selection"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="0.025" android:textStyle="bold" android:password="false"
+            android:typeface="normal"
+            android:gravity="center"/>
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Arcade Mode"
+            android:id="@+id/newGameButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.025"/>
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Survival Mode"
+            android:id="@+id/settingsButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.025"/>
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Back to Main Menu"
+            android:id="@+id/backButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.025"/>
+
+</LinearLayout>

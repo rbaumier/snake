@@ -2,12 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-        >
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World, MyActivity"
-            />
+              android:layout_height="fill_parent">
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="SNAKE"
+                android:textSize="60sp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/title"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_weight="0.025" android:textStyle="bold" android:password="false"
+                android:typeface="normal"
+                android:gravity="center"/>
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="New Game"
+                android:id="@+id/newGameButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.025"/>
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:id="@+id/settingsButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.025"/>
+        <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="High Scores"
+                android:id="@+id/highScoreButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.025"/>
 </LinearLayout>
+
 
