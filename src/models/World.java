@@ -26,7 +26,6 @@ public class World {
     }
     return board;
   }
-
     //display world for console version
     public void displayWorld() {
         for (int x = 0; x < width; x++) {
