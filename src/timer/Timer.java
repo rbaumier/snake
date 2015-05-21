@@ -4,9 +4,12 @@ import android.os.Handler;
 
 public class Timer implements Runnable {
   public Handler handler;
+
+  private int refreshTime;
   private boolean running = true;
 
-  public Timer() {
+  public Timer(int refreshTime) {
+    this.refreshTime = refreshTime;
   }
 
   public void stop() {
@@ -17,7 +20,7 @@ public class Timer implements Runnable {
   public void run() {
     while (running) {
       try {
-        Thread.sleep(1000);
+        Thread.sleep(refreshTime);
       } catch (InterruptedException ex) {
         Thread.currentThread().interrupt();
       }
