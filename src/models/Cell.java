@@ -1,15 +1,12 @@
 package models;
 
 public class Cell {
-  public int x; // honrizontal
-  public int y; // vertical
   public State state;
   public enum State {
     empty,
     fruit,
     head,
-    tail,
-    wall
+    tail
   }
 
   public Cell() {

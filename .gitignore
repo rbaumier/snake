@@ -28,4 +28,7 @@ proguard/
 # Log Files
 *.log
 
+project.properties
+encodings.xml
 
+.idea/workspace.xml
