@@ -8,12 +8,11 @@ public class Cell {
     empty,
     fruit,
     head,
-    tail
+    tail,
+    wall
   }
 
-  public Cell(int x, int y) {
-    this.x = x;
-    this.y = y;
+  public Cell() {
     this.state = State.empty;
   }
 
