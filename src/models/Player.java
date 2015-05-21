@@ -1,5 +1,9 @@
 package models;
 
 public class Player {
-  private int score;
+  public int score;
+
+  public Player(int score) {
+    this.score = score;
+  }
 }

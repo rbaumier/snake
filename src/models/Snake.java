@@ -3,33 +3,40 @@ package models;
 import java.util.ArrayList;
 
 public class Snake {
-  private ArrayList<Cell> body = new ArrayList<Cell>();
-  private Direction direction = Direction.L;
-  private enum Direction {
+  private final World world;
+  public Direction direction;
+
+  public enum Direction {
     U, // Up -> y+1
     R, // Right -> x+1
     D, // Down -> y-1
     L // Left -> x-1, default
   }
 
-  public Snake(ArrayList<Cell> body) {
-    this.body = body; // size 3 at the center
-    this.spawn();
+  public Snake(World world) {
+    this.world = world;
+    this.direction = Direction.L;
+    this.spawn(world);
   }
 
-  private void spawn() {
+  public void spawn(World world) {
+    int height = world.height / 2;
+    int start = world.width / 2;
 
+    world.board[start][height].state = Cell.State.head;
+    world.board[start + 1][height].state = Cell.State.tail;
+    world.board[start + 2][height].state = Cell.State.tail;
   }
 
-  private void move(int x, int y) {
-
+  public void move(int x, int y) {
+    this.world.board[x][y].state = Cell.State.head;
   }
 
-  private void eat() {
-
+  public void eat() {
+    grow();
   }
 
-  private void grow() {
+  public void grow() {
 
   }
 }
