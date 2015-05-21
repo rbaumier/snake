@@ -1,3 +1,4 @@
+import controllers.Controller;
 import models.*;
 import timer.Timer;
 
@@ -6,7 +7,9 @@ public class Console {
     World world = new World(20, 20);
     Snake snake = new Snake(world);
 
-    Timer timer = new Timer(1000);
+    Controller controller = new Controller(world);
+
+    Timer timer = new Timer(1000, controller);
     timer.run();
   }
 }
