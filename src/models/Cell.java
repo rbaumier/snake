@@ -1,8 +1,6 @@
 package models;
 
 public class Cell {
-  public int x; // honrizontal
-  public int y; // vertical
   public State state;
   public enum State {
     empty,
@@ -11,9 +9,7 @@ public class Cell {
     tail
   }
 
-  public Cell(int x, int y) {
-    this.x = x;
-    this.y = y;
+  public Cell() {
     this.state = State.empty;
   }
 

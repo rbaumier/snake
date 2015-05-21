@@ -6,15 +6,13 @@ public class World {
   public int width;
   public int height;
   public Snake snake; // necessary?
-  public Fruit fruit;
   public ArrayList<Cell> cells;
   public Cell[][] board;
 
-  public World(int width, int height, Snake snake, Fruit fruit) {
+  public World(int width, int height, Snake snake) {
     this.width = width;
     this.height = height;
     this.snake = snake;
-    this.fruit = fruit;
     this.board = fill(new Cell[height][width]);
   }
 
