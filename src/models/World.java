@@ -8,10 +8,9 @@ public class World {
   public Snake snake;
   public Cell[][] board;
 
-  public World(int width, int height, Snake snake) {
+  public World(int width, int height) {
     this.width = width;
     this.height = height;
-    this.snake = snake;
     this.board = fill(new Cell[height][width]);
   }
 
@@ -46,7 +45,7 @@ public class World {
       System.out.println(line);
     }
   }
-
+  
   public void spawnFruit(){
     int lower = 0;
     int higherHeight = this.height;
@@ -61,7 +60,7 @@ public class World {
   }
 
   public void eat(){
-    
+
   }
 
   public boolean isEmpty(int height, int width){
