@@ -4,4 +4,17 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Scores"
+    android:textSize="60sp"
+    android:layout_gravity="center_horizontal"
+    android:id="@+id/title"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_weight="0.025" android:textStyle="bold" android:password="false"
+    android:typeface="normal"
+    android:gravity="center"/>
+
 </LinearLayout>

@@ -27,14 +27,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Settings"
-                android:id="@+id/settingsButton"
+                android:id="@+id/parametersButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0.025"/>
         <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="High Scores"
-                android:id="@+id/highScoreButton"
+                android:id="@+id/ScoresButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0.025"/>
 </LinearLayout>
