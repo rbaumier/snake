@@ -45,7 +45,7 @@ public class World {
       System.out.println(line);
     }
   }
-  
+
   public void spawnFruit(){
     int lower = 0;
     int higherHeight = this.height;
