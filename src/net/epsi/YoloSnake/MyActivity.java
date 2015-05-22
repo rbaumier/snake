@@ -31,7 +31,7 @@ public class MyActivity extends Activity {
       }
     });
 
-    Button scores = (Button) findViewById(R.id.ScoresButton);
+    Button scores = (Button) findViewById(R.id.scoresButton);
     scores.setOnClickListener(new Button.OnClickListener() {
       public void onClick(View v) {
         self.startActivity(new Intent(self, ScoresActivity.class));
