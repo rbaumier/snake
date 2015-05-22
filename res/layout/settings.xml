@@ -13,7 +13,8 @@
             android:id="@+id/title"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_weight="0.033" android:textStyle="bold" android:password="false"
+            android:layout_weight="0.010"
+            android:textStyle="bold"
             android:typeface="normal"
             android:gravity="center"/>
     <Button
@@ -22,12 +23,19 @@
             android:text="Music Off"
             android:id="@+id/newGameButton"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.025"/>
+            android:layout_weight="0.033"/>
     <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Reset"
             android:id="@+id/settingsButton"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.025"/>
+            android:layout_weight="0.033"/>
+  <Button
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Back to Main Menu"
+    android:id="@+id/backButton"
+    android:layout_gravity="center_horizontal"
+    android:layout_weight="0.033"/>
 </LinearLayout>
