@@ -45,4 +45,28 @@ public class World {
       System.out.println("line " + line);
     }
   }
+  
+  public void spawnFruit(){
+    int lower = 0;
+    int higherHeight = this.height;
+    int higherWidth = this.width;
+    int randomHeight = (int)(Math.random() * (higherHeight-lower)) + lower;
+    int randomWidth = (in)(Math.random() * (higherWidth-lower)) + lower;
+    if(isEmpty(randomWidth, randomHeight))
+      this.board[randomWidth][randomHeight].state = Cell.State.fruit;
+    else
+      spawnFruit();
+
+  }
+
+  public void eat(){
+
+  }
+
+  public boolean isEmpty(int height, int width){
+    if(this.board[width][height].state == Cell.State.empty)
+      return true;
+    else
+      return false;
+  }
 }
