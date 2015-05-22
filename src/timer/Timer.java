@@ -2,7 +2,6 @@ package timer;
 
 import android.os.Handler;
 import controllers.Controller;
-import models.World;
 
 public class Timer implements Runnable {
   public Handler handler;
@@ -29,7 +28,7 @@ public class Timer implements Runnable {
       } catch (InterruptedException ex) {
         Thread.currentThread().interrupt();
       }
-      handler.sendEmptyMessage(0); // send tick
+//      handler.sendEmptyMessage(0); // send tick to activity
     }
   }
 

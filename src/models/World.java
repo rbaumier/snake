@@ -1,7 +1,5 @@
 package models;
 
-import java.util.ArrayList;
-
 public class World {
   public int width;
   public int height;
@@ -42,7 +40,7 @@ public class World {
         }
 
       }
-      System.out.println(line);
+      System.out.println("line " + line);
     }
   }
 
@@ -51,7 +49,7 @@ public class World {
     int higherHeight = this.height;
     int higherWidth = this.width;
     int randomHeight = (int)(Math.random() * (higherHeight-lower)) + lower;
-    int randomWidth = (in)(Math.random() * (higherWidth-lower)) + lower;
+    int randomWidth = (int)(Math.random() * (higherWidth-lower)) + lower;
     if(isEmpty(randomWidth, randomHeight))
       this.board[randomWidth][randomHeight].state = Cell.State.fruit;
     else
