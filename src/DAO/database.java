@@ -48,4 +48,11 @@ public final class database {
     editor.putString("scores", "");
     editor.commit();
   }
+
+  public static boolean switchMusicValue() {
+    Boolean newMusicValue = !pref.getBoolean("music", false);
+    editor.putBoolean("music", newMusicValue);
+    editor.commit();
+    return newMusicValue;
+  }
 }

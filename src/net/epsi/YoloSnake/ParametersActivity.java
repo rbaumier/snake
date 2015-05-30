@@ -30,9 +30,9 @@ public class ParametersActivity extends Activity {
     musicButton.setText(musicButtonText(musicValue));
     musicButton.setOnClickListener(new Button.OnClickListener() {
       public void onClick(View v) {
-        Boolean newMusicValue = !pref.getBoolean("music", false);
-        pref.edit().putBoolean("music", newMusicValue);
-        musicButton.setText(musicButtonText(newMusicValue));
+        musicButton.setText(musicButtonText(
+          database.switchMusicValue()
+        ));
       }
     });
   }
