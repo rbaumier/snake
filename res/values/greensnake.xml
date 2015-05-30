@@ -10,9 +10,10 @@
   </style>
 
   <style name="ButtonText" parent="@android:style/Widget.Button">
-    <item name="android:textColor">@color/primarygreen</item>
-    <item name="android:layout_width">80.0px</item>
-    <item name="android:layout_height">40.0px</item>
+    <item name="android:textColor">@color/bgwhite</item>
+    <item name="android:textSize">20sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textAllCaps">true</item>
   </style>
 
 </resources>
