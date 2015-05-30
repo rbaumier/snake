@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">YoloSnake</string>
+  <string name="app_name">YoloSnake</string>
   <string name="apptitle">SNAKE</string>
   <string name="newgame">New Game</string>
   <string name="settings">Settings</string>
-  <string name="highscores">High Scores (Top 10)</string>
+  <string name="highscores">High Scores</string>
+  <string name="resetscores">Reset Scores</string>
+  <string name="settingstitle">Settings</string>
 </resources>

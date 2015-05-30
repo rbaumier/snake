@@ -11,18 +11,18 @@
             android:textSize="30sp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/title"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:layout_weight="0.010"
             android:textStyle="bold"
             android:typeface="normal"
             android:gravity="center"/>
+
     <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/newGameButton"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.033"/>
+
     <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

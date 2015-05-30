@@ -4,20 +4,31 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-  <Button
+  <TextView
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:text="Music OFF"
-    android:id="@+id/music"
+    android:text="@string/settingstitle"
+    android:textSize="60sp"
     android:layout_gravity="center_horizontal"
-    android:layout_weight="0.025"/>
+    android:layout_weight="0.025"
+    android:textStyle="bold"
+    android:gravity="center"/>
 
   <Button
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:text="Reset Scores"
+    android:id="@+id/music"
+    android:layout_gravity="center_horizontal"
+    android:layout_weight="0.025"
+    android:background="@color/primarygreen"/>
+
+  <Button
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/resetscores"
     android:id="@+id/resetScores"
     android:layout_gravity="center_horizontal"
-    android:layout_weight="0.025"/>
+    android:layout_weight="0.025"
+    android:background="@color/primarygreen"/>
 
 </LinearLayout>
