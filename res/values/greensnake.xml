@@ -7,9 +7,18 @@
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowBackground">@color/bgwhite</item>
     <item name="android:buttonStyle">@style/ButtonText</item>
+    <item name="android:listViewStyle">@style/ListView</item>
   </style>
 
   <style name="ButtonText" parent="@android:style/Widget.Button">
+    <item name="android:textColor">@color/bgwhite</item>
+    <item name="android:textSize">20sp</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textAllCaps">true</item>
+  </style>
+
+  <style name="ListView">
+    <item name="android:textAlignment">gravity</item>
     <item name="android:textColor">@color/bgwhite</item>
     <item name="android:textSize">20sp</item>
     <item name="android:textStyle">bold</item>
