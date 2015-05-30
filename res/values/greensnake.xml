@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="bgwhite">#ececec</color>
+  <color name="primarygreen">#50af54</color>
+
+  <style name="GreenSnake" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowBackground">@color/bgwhite</item>
+    <item name="android:buttonStyle">@style/ButtonText</item>
+  </style>
+
+  <style name="ButtonText" parent="@android:style/Widget.Button">
+    <item name="android:textColor">@color/primarygreen</item>
+    <item name="android:layout_width">80.0px</item>
+    <item name="android:layout_height">40.0px</item>
+  </style>
+
+</resources>
