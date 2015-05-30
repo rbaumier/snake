@@ -7,8 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import java.util.Collections;
+import DAO.database;
 
 public class ParametersActivity extends Activity {
   @Override
@@ -53,7 +52,7 @@ public class ParametersActivity extends Activity {
           .setMessage("Are you sure you want to reset scores?")
           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-              pref.edit().putStringSet("scores", Collections.emptySet());
+              database.clearPlayers();
             }
           })
           .setNegativeButton("No", null)

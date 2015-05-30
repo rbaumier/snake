@@ -1,4 +1,4 @@
-package database;
+package DAO;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,11 +10,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class DAO {
+public final class database {
   private static SharedPreferences pref;
   private static SharedPreferences.Editor editor;
   private static final String dbname = "SnakePreferences";
-  private static DAO INSTANCE = new DAO();
+  private static database INSTANCE = new database();
   private static Gson gson = new Gson();
 
   public static void init(Context ctx) {
@@ -22,7 +22,7 @@ public final class DAO {
     editor = pref.edit();
   }
 
-  public static DAO getInstance() {
+  public static database getInstance() {
     return INSTANCE;
   }
 
@@ -37,9 +37,15 @@ public final class DAO {
   }
 
   public static ArrayList<Player> getPlayers() {
-    return gson.fromJson(
+    ArrayList<Player> players = gson.fromJson(
       pref.getString("scores", ""),
-      new TypeToken<List<Player>>(){}.getType()
+      new TypeToken<List<Player>>() {}.getType()
     );
+    return players != null ? players : new ArrayList<>();
+  }
+
+  public static void clearPlayers() {
+    editor.putString("scores", "");
+    editor.commit();
   }
 }

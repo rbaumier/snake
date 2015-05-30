@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import database.DAO;
+import DAO.database;
 import models.Player;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class ScoresActivity extends Activity {
   }
 
   private void showScores() {
-    ArrayList<Player> players = DAO.getPlayers();
+    ArrayList<Player> players = database.getPlayers();
     Collections.sort(players, new Comparator<Player>() {
       public int compare(Player p1, Player p2) {
         return p2.score - p1.score;

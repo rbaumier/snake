@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import database.DAO;
+import DAO.database;
 import models.Player;
 
 import java.util.*;
@@ -19,14 +19,14 @@ public class MyActivity extends Activity {
     // To show console version of the snake;
     //    Terminal.main();
 
-    DAO.init(getApplicationContext());
+    database.init(getApplicationContext());
 
     HashMap<Button, Class> buttons = defineButtons();
     defineActions(buttons);
     initializePreferences();
 
     // to remove once we have a game which creates scores
-    DAO.putPlayers(new ArrayList<Player>() {{
+    database.putPlayers(new ArrayList<Player>() {{
       add(new Player("Jean", 180));
       add(new Player("Bobby", 200));
     }});
