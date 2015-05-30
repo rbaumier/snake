@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Snake {
   private final World world;
-  public Direction direction;
+  private Direction direction;
 
   public enum Direction {
     U, // Up -> y+1
@@ -13,23 +13,23 @@ public class Snake {
     L // Left -> x-1, default
   }
 
-  public Snake(World world) {
-    this.world = world;
-    this.direction = Direction.L;
-    this.spawn(world);
+  public Snake(World w) {
+    world = w;
+    direction = Direction.L;
+    spawn();
   }
 
-  public void spawn(World world) {
+  public void spawn() {
     int height = world.height / 2;
     int start = world.width / 2;
 
-    world.board[start][height].state = Cell.State.head;
-    world.board[start + 1][height].state = Cell.State.tail;
-    world.board[start + 2][height].state = Cell.State.tail;
+    world.board[start][height].setHead();
+    world.board[start + 1][height].setTail();
+    world.board[start + 2][height].setTail();
   }
 
   public void move(int x, int y) {
-    this.world.board[x][y].state = Cell.State.head;
+    world.board[x][y].setHead();
   }
 
   public void eat() {

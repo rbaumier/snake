@@ -1,8 +1,8 @@
 package models;
 
 public class Cell {
-  public State state;
-  public enum State {
+  private State state;
+  private enum State {
     empty,
     fruit,
     head,
@@ -10,10 +10,15 @@ public class Cell {
   }
 
   public Cell() {
-    this.state = State.empty;
+    state = State.empty;
   }
 
-  public boolean isEmpty() {
-    return this.state == State.empty;
-  }
+  public boolean isEmpty() { return state == State.empty; }
+  public boolean isFruit() { return state == State.fruit; }
+  public boolean isHead() { return state == State.head; }
+  public boolean isTail() { return state == State.tail; }
+
+  public void setFruit() { state = State.fruit; }
+  public void setHead() { state = State.head; }
+  public void setTail() { state = State.tail;}
 }

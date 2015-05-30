@@ -6,65 +6,47 @@ public class World {
   public Snake snake;
   public Cell[][] board;
 
-  public World(int width, int height) {
-    this.width = width;
-    this.height = height;
-    this.board = fill(new Cell[height][width]);
+  public World(int w, int h) {
+    width = w;
+    height = h;
+    fillBoard();
   }
 
-  // fill the board of cells
-  public Cell[][] fill(Cell[][] board) {
+  public void fillBoard() {
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         board[i][j] = new Cell();
       }
     }
-    return board;
   }
 
-  //display world for console version
+  // for console version
   public void displayWorld() {
     for (int x = 0; x < width; x++) {
       String line = "";
       for (int y = 0; y < height; y++) {
-        if (this.board[x][y].state == Cell.State.fruit) {
+        if (board[x][y].isFruit()) {
           line += " " + "::" + " ";
-        } else if (this.board[x][y].state == Cell.State.head) {
+        } else if (board[x][y].isHead()) {
           line += " " + "C" + " ";
-        } else if (this.board[x][y].state == Cell.State.tail) {
+        } else if (board[x][y].isTail()) {
           line += " " + "O" + " ";
-        } else if (this.board[x][y].state == Cell.State.empty) {
+        } else if (board[x][y].isEmpty()) {
           line += " " + " " + " ";
         } else {
           line += " " + "||" + " ";
         }
-
       }
       System.out.println("line " + line);
     }
   }
 
-  public void spawnFruit(){
-    int lower = 0;
-    int higherHeight = this.height;
-    int higherWidth = this.width;
-    int randomHeight = (int)(Math.random() * (higherHeight-lower)) + lower;
-    int randomWidth = (int)(Math.random() * (higherWidth-lower)) + lower;
-    if(isEmpty(randomWidth, randomHeight))
-      this.board[randomWidth][randomHeight].state = Cell.State.fruit;
+  public void spawnFruit() {
+    int randomHeight = (int) (Math.random() * height);
+    int randomWidth = (int) (Math.random() * width);
+    if (board[randomWidth][randomHeight].isEmpty())
+      board[randomWidth][randomHeight].setFruit();
     else
       spawnFruit();
-
-  }
-
-  public void eat(){
-
-  }
-
-  public boolean isEmpty(int height, int width){
-    if(this.board[width][height].state == Cell.State.empty)
-      return true;
-    else
-      return false;
   }
 }
