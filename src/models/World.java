@@ -9,15 +9,16 @@ public class World {
   public World(int w, int h) {
     width = w;
     height = h;
-    fillBoard();
+    board = fillBoard(new Cell[height][width]);
   }
 
-  public void fillBoard() {
+  private Cell[][] fillBoard(Cell[][] b) {
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        board[i][j] = new Cell();
+        b[i][j] = new Cell();
       }
     }
+    return b;
   }
 
   // for console version
