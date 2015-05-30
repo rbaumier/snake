@@ -22,6 +22,7 @@ public class MyActivity extends Activity {
 
     HashMap<Button, Class> buttons = defineButtons();
     defineActions(buttons);
+    initializePreferences();
   }
 
   private HashMap<Button, Class> defineButtons() {
@@ -41,5 +42,16 @@ public class MyActivity extends Activity {
         }
       });
     }
+  }
+
+  private void initializePreferences() {
+    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+    SharedPreferences.Editor editor = pref.edit();
+
+    // set music to true if doesn't exist
+    boolean music = pref.getBoolean("music", true);
+    editor.putBoolean("music", music);
+
+    editor.apply();
   }
 }
