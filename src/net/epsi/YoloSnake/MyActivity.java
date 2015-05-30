@@ -6,23 +6,30 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import terminal.Terminal;
+import database.DAO;
+import models.Player;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MyActivity extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
-
     // To show console version of the snake;
-    Terminal.main();
+    //    Terminal.main();
+
+    DAO.init(getApplicationContext());
 
     HashMap<Button, Class> buttons = defineButtons();
     defineActions(buttons);
     initializePreferences();
+
+    // to remove once we have a game which creates scores
+    DAO.putPlayers(new ArrayList<Player>() {{
+      add(new Player("Jean", 180));
+      add(new Player("Bobby", 200));
+    }});
   }
 
   private HashMap<Button, Class> defineButtons() {
@@ -47,11 +54,8 @@ public class MyActivity extends Activity {
   private void initializePreferences() {
     SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
     SharedPreferences.Editor editor = pref.edit();
-
-    // set music to true if doesn't exist
-    boolean music = pref.getBoolean("music", true);
+    boolean music = pref.getBoolean("music", true); // set music to true if doesn't exist
     editor.putBoolean("music", music);
-
     editor.apply();
   }
 }
