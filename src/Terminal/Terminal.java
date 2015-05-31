@@ -1,5 +1,5 @@
 package terminal;
-import controllers.Controller;
+import controllers.GameController;
 import models.*;
 import timer.Timer;
 
@@ -8,7 +8,7 @@ public class Terminal {
     World world = new World(20, 20);
     Snake snake = new Snake(world);
 
-    Controller controller = new Controller(world);
+    GameController controller = new GameController(world);
 
     Timer timer = new Timer(1000, controller);
     new Thread(timer).start();

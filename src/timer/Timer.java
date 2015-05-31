@@ -1,16 +1,16 @@
 package timer;
 
 import android.os.Handler;
-import controllers.Controller;
+import controllers.GameController;
 
 public class Timer implements Runnable {
   public Handler handler;
 
   private int refreshTime;
   private boolean running = true;
-  private Controller controller;
+  private GameController controller;
 
-  public Timer(int refreshTime, Controller controller) {
+  public Timer(int refreshTime, GameController controller) {
     this.refreshTime = refreshTime;
     this.controller = controller;
   }
