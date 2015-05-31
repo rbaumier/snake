@@ -26,7 +26,7 @@ public final class database {
     return INSTANCE;
   }
 
-  public static void putPlayers(ArrayList<Player> players) {
+  public static void putScores(ArrayList<Player> players) {
     Type playerType = new TypeToken<List<Player>>(){}.getType();
     List<Player> playersList = gson.fromJson(
       gson.toJson(players, playerType),
@@ -36,7 +36,7 @@ public final class database {
     editor.commit();
   }
 
-  public static ArrayList<Player> getPlayers() {
+  public static ArrayList<Player> getScores() {
     ArrayList<Player> players = gson.fromJson(
       pref.getString("scores", ""),
       new TypeToken<List<Player>>() {}.getType()
@@ -44,7 +44,7 @@ public final class database {
     return players != null ? players : new ArrayList<>();
   }
 
-  public static void clearPlayers() {
+  public static void clearScores() {
     editor.putString("scores", "");
     editor.commit();
   }

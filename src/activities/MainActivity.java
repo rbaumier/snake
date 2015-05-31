@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
     initializePreferences();
 
     // to remove once we have a game which creates scores
-    database.putPlayers(new ArrayList<Player>() {{
+    database.putScores(new ArrayList<Player>() {{
       add(new Player("Jean", 180));
       add(new Player("Bobby", 200));
     }});

@@ -53,7 +53,7 @@ public class ParametersActivity extends Activity {
           .setMessage("Are you sure you want to reset scores?")
           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-              database.clearPlayers();
+              database.clearScores();
             }
           })
           .setNegativeButton("No", null)

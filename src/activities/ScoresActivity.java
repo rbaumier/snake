@@ -24,23 +24,23 @@ public class ScoresActivity extends Activity {
   }
 
   private void showScores() {
-    ArrayList<Player> players = database.getPlayers();
-    Collections.sort(players, new Comparator<Player>() {
+    ArrayList<Player> scores = database.getScores();
+    Collections.sort(scores, new Comparator<Player>() {
       public int compare(Player p1, Player p2) {
         return p2.score - p1.score;
       }
     });
 
     ListView scoresList = (ListView) findViewById(R.id.scoresList);
-    String[] bestPlayers = formatPlayers(
-      players.subList(0, Math.min(players.size(), maxBestPlayers ))
+    String[] bestScores = formatPlayers(
+      scores.subList(0, Math.min(scores.size(), maxBestPlayers ))
     );
 
     scoresList.setAdapter(new ArrayAdapter<String>(
       this,
       android.R.layout.simple_list_item_1,
       android.R.id.text1,
-      bestPlayers
+      bestScores
     ));
   }
 
