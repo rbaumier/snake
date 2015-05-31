@@ -1,18 +1,15 @@
 package timer;
 
 import android.os.Handler;
-import controllers.GameController;
 
 public class Timer implements Runnable {
   public Handler handler;
 
   private int refreshTime;
   private boolean running = true;
-  private GameController controller;
 
-  public Timer(int refreshTime, GameController controller) {
+  public Timer(int refreshTime) {
     this.refreshTime = refreshTime;
-    this.controller = controller;
   }
 
   public void stop() {
@@ -22,13 +19,12 @@ public class Timer implements Runnable {
   @Override
   public void run() {
     while (running) {
-      controller.update();
       try {
         Thread.sleep(refreshTime);
       } catch (InterruptedException ex) {
         Thread.currentThread().interrupt();
       }
-//      handler.sendEmptyMessage(0); // send tick to activity
+      handler.sendEmptyMessage(0);
     }
   }
 

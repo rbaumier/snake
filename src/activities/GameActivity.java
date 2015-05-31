@@ -2,7 +2,8 @@ package activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import controllers.GameController;
+import android.os.Handler;
+import android.os.Message;
 import models.Player;
 import models.Snake;
 import models.World;
@@ -10,22 +11,32 @@ import net.epsi.YoloSnake.R;
 import timer.Timer;
 import views.GameView;
 
+
 public class GameActivity extends Activity {
-  GameView gameView;
+  private Handler handler;
+  private GameView gameView;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.game);
-    gameView =  (GameView) findViewById(R.id.gameview);
+    
+    gameView = (GameView) findViewById(R.id.gameview);
+    this.handler = new Handler() {
+      @Override
+      public void handleMessage(Message message) {
+        gameView.invalidate();
+      }
+    };
+
     World world = new World(20, 30);
     gameView.initWorld(world);
 
     Player player = new Player();
     Snake snake = new Snake(world);
 
-    GameController gc = new GameController(world);
-    Timer timer = new Timer(1000, gc);
+    Timer timer = new Timer(1000);
+    timer.handler = handler;
     new Thread(timer).start();
   }
 }

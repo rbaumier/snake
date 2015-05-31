@@ -25,6 +25,7 @@ public class GameView extends View implements View.OnTouchListener {
 
   @Override
   public void onDraw(Canvas canvas) {
+    System.out.println("invalidated");
     makePaint();
     drawCells(canvas);
   }
@@ -40,7 +41,6 @@ public class GameView extends View implements View.OnTouchListener {
     int offsetY = this.getHeight() / world.height;
     int cellWidth = getDim(offsetX);
     int cellHeight = getDim(offsetY);
-
     for (int i = 0; i < world.height; i++) {
       for (int j = 0; j < world.width; j++) {
         canvas.drawRect(
@@ -50,7 +50,6 @@ public class GameView extends View implements View.OnTouchListener {
       }
     }
   }
-
 
   @Override
   public boolean onTouch(View view, MotionEvent motionEvent) {
