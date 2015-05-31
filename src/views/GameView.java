@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import models.Cell;
 import models.World;
 
 public class GameView extends View implements View.OnTouchListener {
@@ -43,12 +44,32 @@ public class GameView extends View implements View.OnTouchListener {
     int cellHeight = getDim(offsetY);
     for (int i = 0; i < world.height; i++) {
       for (int j = 0; j < world.width; j++) {
+        paint.setColor(getCellColor(i, j));
         canvas.drawRect(
           drawCell(getPos(j, offsetX), getPos(i, offsetY), cellWidth, cellHeight),
           paint
         );
       }
     }
+  }
+
+  private int getCellColor(int x, int y) {
+    Cell cell = world.board[x][y];
+    if (cell.isEmpty()) {
+      return color("#BDBDBD");
+    } else if (cell.isFruit()) {
+      return color("#F44336");
+    } else if (cell.isWall()) {
+      return color("#795548");
+    } else if (cell.isHead()) {
+      return color("#1B5E20");
+    } else { // is tail or last
+      return color("#4CAF50");
+    }
+  }
+
+  public int color(String hex) {
+    return Color.parseColor(hex);
   }
 
   @Override

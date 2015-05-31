@@ -20,7 +20,7 @@ public class GameActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.game);
-    
+
     gameView = (GameView) findViewById(R.id.gameview);
     this.handler = new Handler() {
       @Override

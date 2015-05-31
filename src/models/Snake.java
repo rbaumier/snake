@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class Snake {
   private final World world;
   private Direction direction;
-  private LinkedList<Integer[]> snake;
+  private LinkedList<Integer[]> snake = new LinkedList<>();
 
   public enum Direction {
     U, // Up
