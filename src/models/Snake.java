@@ -21,6 +21,11 @@ public class Snake {
     spawn();
   }
 
+  public boolean isDirectionUp() { return direction == Direction.U; }
+  public boolean isDirectionDown() { return direction == Direction.D; }
+  public boolean isDirectionLeft() { return direction == Direction.L; }
+  public boolean isDirectionRight() { return direction == Direction.R; }
+
   public void setDirectionUp() { direction = Direction.U; }
   public void setDirectionDown() { direction = Direction.D; }
   public void setDirectionLeft() { direction = Direction.L; }
@@ -129,16 +134,23 @@ public class Snake {
   }
 
   public boolean isValidCell(int height, int width){
-    if(world.height > height && height >= 0 && (world.board[height][width].isEmpty() || world.board[height][width].isFruit())){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return world.height > height && height >= 0 && (world.board[height][width].isEmpty() || world.board[height][width].isFruit());
   }
 
   public void eat() {
     //SCORE +
+  }
+
+  public void rotate() {
+    if (isDirectionUp()) {
+      setDirectionRight();
+    } else if (isDirectionRight()) {
+      setDirectionDown();
+    } else if (isDirectionDown()) {
+      setDirectionLeft();
+    } else {
+      setDirectionUp();
+    }
   }
 
 }

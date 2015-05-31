@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import models.Cell;
+import models.Snake;
 import models.World;
 
 public class GameView extends View implements View.OnTouchListener {
@@ -56,7 +57,7 @@ public class GameView extends View implements View.OnTouchListener {
   private int getCellColor(int x, int y) {
     Cell cell = world.board[x][y];
     if (cell.isEmpty()) {
-      return color("#BDBDBD");
+      return color("#CFD8DC");
     } else if (cell.isFruit()) {
       return color("#F44336");
     } else if (cell.isWall()) {
@@ -73,8 +74,12 @@ public class GameView extends View implements View.OnTouchListener {
   }
 
   @Override
-  public boolean onTouch(View view, MotionEvent motionEvent) {
-    return false;
+  public boolean onTouch(View v, MotionEvent e) {
+    if (e.getAction() == MotionEvent.ACTION_DOWN) {
+      world.snake.rotate();
+      this.invalidate();
+    }
+    return true;
   }
 
   public Rect drawCell(int posX, int posY, int width, int height) {
