@@ -52,4 +52,8 @@ public class World {
     else
       spawnFruit();
   }
+
+  public void setSnake(Snake snake) {
+    this.snake = snake;
+  }
 }
