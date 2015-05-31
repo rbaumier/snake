@@ -1,16 +1,16 @@
 package activities;
 
+import DAO.database;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import DAO.database;
-import models.Player;
 import net.epsi.YoloSnake.R;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends Activity {
   @Override
@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
 
   private void defineActions(HashMap<Button, Class> buttons) {
     final Activity self = this;
-    for (Map.Entry<Button, Class> button : buttons.entrySet()) {
+    for (final Map.Entry<Button, Class> button : buttons.entrySet()) {
       button.getKey().setOnClickListener(new Button.OnClickListener() {
         public void onClick(View v) {
           self.startActivity(new Intent(self, button.getValue()));

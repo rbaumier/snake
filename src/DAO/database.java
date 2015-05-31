@@ -41,7 +41,7 @@ public final class database {
       pref.getString("scores", ""),
       new TypeToken<List<Player>>() {}.getType()
     );
-    return players != null ? players : new ArrayList<>();
+    return players != null ? players : new ArrayList<Player>();
   }
 
   public static void clearScores() {

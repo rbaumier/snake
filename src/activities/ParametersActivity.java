@@ -26,7 +26,7 @@ public class ParametersActivity extends Activity {
   }
 
   private void initializeMusicButton(SharedPreferences pref) {
-    Button musicButton = (Button) findViewById(R.id.music);
+    final Button musicButton = (Button) findViewById(R.id.music);
     Boolean musicValue = pref.getBoolean("music", true);
     musicButton.setText(musicButtonText(musicValue));
     musicButton.setOnClickListener(new Button.OnClickListener() {

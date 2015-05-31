@@ -38,5 +38,9 @@ public class GameActivity extends Activity {
     Timer timer = new Timer(1000);
     timer.handler = handler;
     new Thread(timer).start();
+    world.spawnFruit();
+    snake.move(Snake.Direction.U);
+    snake.move(Snake.Direction.R);
+    snake.move(Snake.Direction.D);
   }
 }
