@@ -1,4 +1,4 @@
-package terminal;
+package views;
 import controllers.GameController;
 import models.*;
 import timer.Timer;
