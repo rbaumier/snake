@@ -8,28 +8,64 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import models.World;
 
 public class GameView extends View implements View.OnTouchListener {
+  World world;
+  Paint paint;
+
   public GameView(Context context, AttributeSet attrs) {
     super(context, attrs);
     this.setOnTouchListener(this);
   }
 
-  @Override
-  protected void onDraw(Canvas canvas) {
-    super.onDraw(canvas);
-    Paint paint = new Paint();
-    // fill
-    paint.setStyle(Paint.Style.FILL);
-    paint.setColor(Color.MAGENTA);
-
-    canvas.drawCircle(150, 150, 2, paint);
+  public void initWorld(World w) {
+    world = w;
   }
+
+  @Override
+  public void onDraw(Canvas canvas) {
+    makePaint();
+    drawCells(canvas);
+  }
+
+  private void makePaint() {
+    paint = new Paint();
+    paint.setStyle(Paint.Style.FILL);
+    paint.setColor(Color.LTGRAY);
+  }
+
+  private void drawCells(Canvas canvas) {
+    int offsetX = this.getWidth() / world.width;
+    int offsetY = this.getHeight() / world.height;
+    int cellWidth = getDim(offsetX);
+    int cellHeight = getDim(offsetY);
+
+    for (int i = 0; i < world.height; i++) {
+      for (int j = 0; j < world.width; j++) {
+        canvas.drawRect(
+          drawCell(getPos(j, offsetX), getPos(i, offsetY), cellWidth, cellHeight),
+          paint
+        );
+      }
+    }
+  }
+
 
   @Override
   public boolean onTouch(View view, MotionEvent motionEvent) {
     return false;
   }
 
+  public Rect drawCell(int posX, int posY, int width, int height) {
+    return new Rect(posX, posY, posX + width, posY + height);
+  }
 
+  public int getDim(int offset) {
+    return offset - offset / 8;
+  }
+
+  private int getPos(int start, int offset) {
+    return start * offset + offset / 8;
+  }
 }
