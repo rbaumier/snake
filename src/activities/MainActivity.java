@@ -1,4 +1,4 @@
-package net.epsi.YoloSnake;
+package activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,10 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import DAO.database;
 import models.Player;
+import net.epsi.YoloSnake.R;
 
 import java.util.*;
 
-public class MyActivity extends Activity {
+public class MainActivity extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

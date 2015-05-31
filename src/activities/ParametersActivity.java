@@ -1,4 +1,4 @@
-package net.epsi.YoloSnake;
+package activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import DAO.database;
+import net.epsi.YoloSnake.R;
 
 public class ParametersActivity extends Activity {
   @Override
