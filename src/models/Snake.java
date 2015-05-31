@@ -17,6 +17,7 @@ public class Snake {
 
   public Snake(World w) {
     world = w;
+    world.setSnake(this);
     direction = Direction.L;
     spawn();
   }
