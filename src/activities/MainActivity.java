@@ -25,12 +25,6 @@ public class MainActivity extends Activity {
     HashMap<Button, Class> buttons = defineButtons();
     defineActions(buttons);
     initializePreferences();
-
-    // to remove once we have a game which creates scores
-    database.putScores(new ArrayList<Player>() {{
-      add(new Player("Jean", 180));
-      add(new Player("Bobby", 200));
-    }});
   }
 
   private HashMap<Button, Class> defineButtons() {

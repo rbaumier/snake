@@ -10,7 +10,7 @@ public class GameController {
   }
 
   public void update() {
-    this.world.displayWorld();
+//    this.world.displayWorld();
   }
 
   public void pause() {
