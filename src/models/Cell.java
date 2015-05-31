@@ -7,7 +7,8 @@ public class Cell {
     fruit,
     head,
     tail,
-    last //Last case of the tail
+    last, //Last case of the tail
+    wall
   }
 
   public Cell() {
@@ -19,9 +20,12 @@ public class Cell {
   public boolean isHead() { return state == State.head; }
   public boolean isTail() { return state == State.tail; }
   public boolean isLast() { return state == State.last; }
+  public boolean isWall() { return state == State.wall; }
 
   public void setFruit() { state = State.fruit; }
   public void setHead() { state = State.head; }
   public void setTail() { state = State.tail;}
   public void setLast() { state = State.last;}
+  public void setWall() { state = State.wall;}
+  public void setEmpty() { state = State.empty;}
 }
