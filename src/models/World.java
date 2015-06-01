@@ -64,10 +64,6 @@ public class World {
           fruit[1] = j;
       }
     }
-    if(fruit[0] == null || fruit[1]== null){
-      spawnFruit();
-      getFruit();
-    }
     return fruit;
   }
 

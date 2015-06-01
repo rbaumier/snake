@@ -132,7 +132,7 @@ public class Snake {
 
   public void eat() {
     world.spawnFruit();
-    //SCORE +
+    world.player.score++;
   }
 
   public void rotate() {
