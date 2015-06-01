@@ -77,13 +77,6 @@ public class GameActivity extends Activity {
         self.startActivity(new Intent(self, MainActivity.class));
       }
     });
-
-    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int whichButton) {
-        // Canceled.
-      }
-    });
-
     alert.show();
   }
 
