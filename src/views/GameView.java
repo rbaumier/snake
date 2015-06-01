@@ -8,9 +8,12 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import models.Cell;
 import models.Snake;
 import models.World;
+import net.epsi.YoloSnake.R;
 
 public class GameView extends View implements View.OnTouchListener {
   World world;
@@ -27,7 +30,6 @@ public class GameView extends View implements View.OnTouchListener {
 
   @Override
   public void onDraw(Canvas canvas) {
-    System.out.println("invalidated");
     makePaint();
     drawCells(canvas);
   }

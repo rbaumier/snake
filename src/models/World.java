@@ -7,11 +7,13 @@ public class World {
   public int height;
   public Snake snake;
   public Cell[][] board;
+  public Player player;
 
   public World(int w, int h) {
     width = w;
     height = h;
     board = fillBoard(new Cell[height][width]);
+    player = new Player();
   }
 
   private Cell[][] fillBoard(Cell[][] b) {
