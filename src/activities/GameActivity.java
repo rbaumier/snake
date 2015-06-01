@@ -81,7 +81,7 @@ public class GameActivity extends Activity {
   }
 
   private void startTimer() {
-    timer = new Timer(500);
+    timer = new Timer(100);
     timer.handler = handler;
     new Thread(timer).start();
     world.spawnFruit();
