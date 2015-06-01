@@ -77,8 +77,8 @@ public class World {
       board[fruit[0]][fruit[1]].setFruit();
 
       LinkedList<Integer[]> serpent = snake.getCells();
-      for(k=0; k < serpent.size(); k++){
-        if(k=0){
+      for(int k=0; k < serpent.size(); k++){
+        if(k==0){
           Integer[] current = serpent.get(k);
           board[current[0]][current[1]].setHead();
         }
