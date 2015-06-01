@@ -56,8 +56,8 @@ public class World {
   }
 
   public Integer[] getFruit() {
-    int x = (int) (Math.random() * height);
-    int y = (int) (Math.random() * width);
+    int x = (int) (Math.random() * width);
+    int y = (int) (Math.random() * height);
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         if (board[i][j].isFruit()) {
@@ -80,7 +80,6 @@ public class World {
     }
 
     board[fruit[0]][fruit[1]].setFruit();
-
     LinkedList<Integer[]> serpent = snake.getCells();
     for (int k = 0; k < serpent.size(); k++) {
       if (k == 0) {
