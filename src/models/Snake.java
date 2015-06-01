@@ -127,7 +127,9 @@ public class Snake {
   }
 
   public boolean isValidCell(int height, int width){
-    return world.height > height && height >= 0 && (world.board[height][width].isEmpty() || world.board[height][width].isFruit());
+    return world.height > height && height >= 0 &&
+      world.width > width && width >= 0 &&
+      (world.board[height][width].isEmpty() || world.board[height][width].isFruit());
   }
 
   public void eat() {

@@ -42,7 +42,6 @@ public class GameActivity extends Activity {
         if (world.snake.gameOver) {
           gameOver();
           world.snake.gameOver = false;
-          System.out.println("plop");
         }
         snake.move(snake.direction);
         updateView(scores);
@@ -60,11 +59,13 @@ public class GameActivity extends Activity {
     playMusicIfActivated();
   }
 
+
   private void gameOver() {
     pause();
     AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-    alert.setTitle("What is your name?");
+    alert.setTitle("Game Over");
+    alert.setMessage("What is your name?");
     final Activity self = this;
     final EditText input = new EditText(this);
     alert.setView(input);
