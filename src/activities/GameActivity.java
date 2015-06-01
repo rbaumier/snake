@@ -32,7 +32,7 @@ public class GameActivity extends Activity {
     setContentView(R.layout.game);
 
     gameView = (GameView) findViewById(R.id.gameview);
-    TextView scores = (TextView) findViewById(R.id.gamescores);
+    final TextView scores = (TextView) findViewById(R.id.gamescores);
 
     this.handler = new Handler() {
       @Override

@@ -66,6 +66,7 @@ public class Snake {
           cells.addFirst(newHead);
           cells.removeLast();
         }
+        world.refreshWorldState();
       } else {
         gameOver = true;
       }
@@ -82,6 +83,7 @@ public class Snake {
           cells.addFirst(newHead);
           cells.removeLast();
         }
+        world.refreshWorldState();
       } else {
         gameOver = true;
       }
@@ -98,6 +100,7 @@ public class Snake {
           cells.addFirst(newHead);
           cells.removeLast();
         }
+        world.refreshWorldState();
       } else {
         gameOver = true;
       }
@@ -115,10 +118,11 @@ public class Snake {
           cells.addFirst(newHead);
           cells.removeLast();
         }
+        world.refreshWorldState();
       } else {
         gameOver = true;
       }
-      world.refreshWorldState();
+
     }
   }
 
