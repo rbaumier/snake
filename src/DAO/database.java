@@ -36,6 +36,12 @@ public final class database {
     editor.commit();
   }
 
+  public static void addScore(Player player) {
+    ArrayList<Player>  players = getScores();
+    players.add(player);
+    putScores(players);
+  }
+
   public static ArrayList<Player> getScores() {
     ArrayList<Player> players = gson.fromJson(
       pref.getString("scores", ""),
