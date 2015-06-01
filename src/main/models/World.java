@@ -26,12 +26,9 @@ public class World {
   }
 
   public void spawnFruit() {
-    int randomHeight = (int) (Math.random() * height);
-    int randomWidth = (int) (Math.random() * width);
-    if (board[randomHeight][randomWidth].isEmpty())
-      board[randomHeight][randomWidth].setFruit();
-    else
-      spawnFruit();
+    Cell randomCell = getRandomCell();
+    if (randomCell.isEmpty()) randomCell.setFruit();
+    else spawnFruit();
   }
 
   public Integer[] getFruit() {
@@ -71,6 +68,10 @@ public class World {
     }
   }
 
+  private int random(int max) {
+    return (int) (Math.random() * max);
+  }
+
   public void spawnSnake() {
     int x = height / 2;
     int y = width / 2;
@@ -92,5 +93,9 @@ public class World {
     return height > y && y >= 0 &&
       width > x && x >= 0 &&
       board[y][x].isEmptyOrFruit();
+  }
+
+  public Cell getRandomCell() {
+    return board[random(height)][random(width)];
   }
 }
