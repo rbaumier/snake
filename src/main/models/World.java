@@ -3,11 +3,11 @@ package main.models;
 import java.util.LinkedList;
 
 public class World {
-  public int width;
-  public int height;
-  public Snake snake;
-  public Cell[][] board;
-  public Player player;
+  private int width;
+  private int height;
+  private Snake snake;
+  private Cell[][] board;
+  private Player player;
 
   public World(int w, int h) {
     width = w;
@@ -23,27 +23,6 @@ public class World {
       }
     }
     return b;
-  }
-
-  // for console version
-  public void displayWorld() {
-    for (int x = 0; x < width; x++) {
-      String line = "";
-      for (int y = 0; y < height; y++) {
-        if (board[x][y].isFruit()) {
-          line += " " + "::" + " ";
-        } else if (board[x][y].isHead()) {
-          line += " " + "C" + " ";
-        } else if (board[x][y].isTail()) {
-          line += " " + "O" + " ";
-        } else if (board[x][y].isEmpty()) {
-          line += " " + " " + " ";
-        } else {
-          line += " " + "||" + " ";
-        }
-      }
-      System.out.println("line " + line);
-    }
   }
 
   public void spawnFruit() {
@@ -92,7 +71,26 @@ public class World {
     }
   }
 
-  public void setSnake(Snake snake) {
-    this.snake = snake;
+  public void spawnSnake() {
+    int x = height / 2;
+    int y = width / 2;
+
+    board[x][y].setHead();
+    board[x + 1][y].setTail();
+    board[x + 2][y].setLast();
+
+    snake.addToBody(makeCoords(x, y)); // head
+    snake.addToBody(makeCoords(x, y + 1)); // tail
+    snake.addToBody(makeCoords(x, y + 2)); // last
+  }
+
+  public Integer[] makeCoords(int x, int y) {
+    return new Integer[]{x, y};
+  }
+
+  public boolean isNotBusyCell(int x, int y) {
+    return height > y && y >= 0 &&
+      width > x && x >= 0 &&
+      board[y][x].isEmptyOrFruit();
   }
 }

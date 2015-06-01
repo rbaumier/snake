@@ -3,6 +3,7 @@
   <component name="FacetManager">
     <facet type="android" name="Android">
       <configuration>
+        <option name="APK_PATH" value="/out.unaligned" />
         <option name="UPDATE_PROPERTY_FILES" value="true" />
       </configuration>
     </facet>

@@ -3,23 +3,20 @@ package main.models;
 import java.util.LinkedList;
 
 public class Snake {
-  private final World world;
   public Direction direction;
-  private LinkedList<Integer[]> cells = new LinkedList<>();
+  private LinkedList<Integer[]> body = new LinkedList<>();
   public boolean gameOver = false;
+
+  public Snake() {
+    direction = Direction.L;
+    spawn();
+  }
 
   public enum Direction {
     U, // Up
     R, // Right
     D, // Down
     L // Left (default)
-  }
-
-  public Snake(World w) {
-    world = w;
-    world.setSnake(this);
-    direction = Direction.L;
-    spawn();
   }
 
   public boolean isDirectionUp() { return direction == Direction.U; }
@@ -32,73 +29,61 @@ public class Snake {
   public void setDirectionLeft() { direction = Direction.L; }
   public void setDirectionRight() { direction = Direction.R; }
 
-  public void spawn() {
-    int height = world.height / 2;
-    int start = world.width / 2;
-
-    world.board[height][start].setHead();
-    world.board[height + 1][start].setTail();
-    world.board[height + 2][start].setLast();
-    Integer head[] = {height, start};
-    Integer tail[] = {height, start +1};
-    Integer last[] = {height, start +2};
-    cells.add(head);
-    cells.add(tail);
-    cells.add(last);
+  public LinkedList<Integer[]> getCells(){
+    return body;
   }
 
-  public LinkedList<Integer[]> getCells(){
-    return cells;
+  public void addToBody(Integer[] cellCoords) {
+    body.add(cellCoords);
   }
 
   public void move(Direction direction){
-
     if(direction == Direction.U && direction != Direction.D){
-      Integer[] destination = cells.getFirst();
+      Integer[] destination = body.getFirst();
       setDirectionUp();
-      if(isValidCell(destination[0]-1, destination[1])){
+      if(isNotBusy(destination[1], destination[0]-1)){
         Integer[] newHead = {destination[0]-1, destination[1] };
         if(world.board[destination[0]-1][destination[1]].isFruit()){
           eat();
-          cells.addFirst(newHead);
+          body.addFirst(newHead);
         }
         else if(world.board[destination[0]-1][destination[1]].isEmpty()){
-          cells.addFirst(newHead);
-          cells.removeLast();
+          body.addFirst(newHead);
+          body.removeLast();
         }
         world.refreshWorldState();
       } else {
         gameOver = true;
       }
     } else if(direction == Direction.D && direction != Direction.U) {
-      Integer[] destination = cells.getFirst();
+      Integer[] destination = body.getFirst();
       setDirectionDown();
-      if(isValidCell(destination[0]+1, destination[1])){
+      if(isNotBusy(destination[1], destination[0]+1)){
         Integer[] newHead = {destination[0]+1, destination[1] };
         if(world.board[destination[0]+1][destination[1]].isFruit()){
           eat();
-          cells.addFirst(newHead);
+          body.addFirst(newHead);
         }
         else if(world.board[destination[0]+1][destination[1]].isEmpty()){
-          cells.addFirst(newHead);
-          cells.removeLast();
+          body.addFirst(newHead);
+          body.removeLast();
         }
         world.refreshWorldState();
       } else {
         gameOver = true;
       }
     } else if(direction == Direction.L && direction != Direction.R) {
-      Integer[] destination = cells.getFirst();
+      Integer[] destination = body.getFirst();
       setDirectionLeft();
-      if(isValidCell(destination[0], destination[1]-1)){
+      if(isNotBusy(destination[1]-1, destination[0])){
         Integer[] newHead = {destination[0], destination[1]-1 };
         if(world.board[destination[0]][destination[1]-1].isFruit()){
           eat();
-          cells.addFirst(newHead);
+          body.addFirst(newHead);
         }
         else if(world.board[destination[0]][destination[1]-1].isEmpty()){
-          cells.addFirst(newHead);
-          cells.removeLast();
+          body.addFirst(newHead);
+          body.removeLast();
         }
         world.refreshWorldState();
       } else {
@@ -106,17 +91,17 @@ public class Snake {
       }
 
     } else if(direction == Direction.R && direction != Direction.L){
-      Integer[] destination = cells.getFirst();
+      Integer[] destination = body.getFirst();
       setDirectionRight();
-      if(isValidCell(destination[0], destination[1]+1)){
+      if(isNotBusy(destination[1]+1, destination[0])){
         Integer[] newHead = {destination[0], destination[1]+1 };
         if(world.board[destination[0]][destination[1]+1].isFruit()){
           eat();
-          cells.addFirst(newHead);
+          body.addFirst(newHead);
         }
         else if(world.board[destination[0]][destination[1]+1].isEmpty()){
-          cells.addFirst(newHead);
-          cells.removeLast();
+          body.addFirst(newHead);
+          body.removeLast();
         }
         world.refreshWorldState();
       } else {
@@ -124,12 +109,6 @@ public class Snake {
       }
 
     }
-  }
-
-  public boolean isValidCell(int height, int width){
-    return world.height > height && height >= 0 &&
-      world.width > width && width >= 0 &&
-      (world.board[height][width].isEmpty() || world.board[height][width].isFruit());
   }
 
   public void eat() {
