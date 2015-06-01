@@ -65,13 +65,15 @@ public class GameActivity extends Activity {
     AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
     alert.setTitle("What is your name?");
-
+    final Activity self = this;
     final EditText input = new EditText(this);
     alert.setView(input);
 
     alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int whichButton) {
-        Editable value = input.getText();
+        world.player.name = String.valueOf(input.getText());
+        database.addScore(world.player);
+        self.startActivity(new Intent(self, MainActivity.class));
       }
     });
 
