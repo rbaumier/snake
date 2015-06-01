@@ -1,6 +1,6 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class World {
   public int width;
@@ -53,6 +53,41 @@ public class World {
       board[randomWidth][randomHeight].setFruit();
     else
       spawnFruit();
+  }
+
+  public Integer[] getFruit(){
+    Integer[] fruit = new Integer[2];
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        if(board[i][j].isFruit())
+          fruit[0] = i;
+          fruit[1] = j;
+      }
+    }
+    return fruit;
+  }
+
+  public void refreshWorldState() {
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        board[i][j].setEmpty();
+      }
+
+      Integer[] fruit = getFruit();
+      board[fruit[0]][fruit[1]].setFruit();
+
+      LinkedList<Integer[]> serpent = snake.getCells();
+      for(k=0; k < serpent.size(); k++){
+        if(k=0){
+          Integer[] current = serpent.get(k);
+          board[current[0]][current[1]].setHead();
+        }
+        else {
+          Integer[] current = serpent.get(k);
+          board[current[0]][current[1]].setTail();
+        }
+      }
+    }
   }
 
   public void setSnake(Snake snake) {

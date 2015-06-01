@@ -46,116 +46,78 @@ public class Snake {
     cells.add(last);
   }
 
+  public LinkedList<Integer[]> getCells(){
+    return cells;
+  }
+
   public void move(Direction direction){
 
     if(direction == Direction.U && direction != Direction.D){
-      Integer[] head = cells.getFirst();
-      Integer[] last = cells.getLast();
+      Integer[] destination = cells.getFirst();
       setDirectionUp();
-      if(isValidCell(head[0]-1, head[1])){
-        if(world.board[head[0]-1][head[1]].isFruit()){
+      if(isValidCell(destination[0]-1, destination[1])){
+        Integer[] newHead = {destination[0]-1, destination[1] };
+        if(world.board[destination[0]-1][destination[1]].isFruit()){
           eat();
-          world.spawnFruit();
-          world.board[head[0]][head[1]].setTail();
-          world.board[head[0]-1][head[1]].setHead();
-          Integer[] newHead = {head[0]-1, head[1]};
           cells.addFirst(newHead);
         }
-        else if(world.board[head[0]-1][head[1]].isEmpty()){
-          world.board[last[1]][last[0]].setEmpty();
-          Integer[] newHead = {head[0]-1, head[1]};
-          cells.removeLast();
-          Integer[] newLast = cells.get(cells.size() - 1);
+        else if(world.board[destination[0]-1][destination[1]].isEmpty()){
           cells.addFirst(newHead);
-          world.board[newLast[1]][newLast[0]].setLast();
-          world.board[head[0]][head[1]].setTail();
-          world.board[head[0]-1][head[1]].setHead();
-
+          cells.removeLast();
         }
       } else {
         //GAME OVER
       }
     } else if(direction == Direction.D && direction != Direction.U) {
-      Integer[] head = cells.getFirst();
-      Integer[] last = cells.getLast();
+      Integer[] destination = cells.getFirst();
       setDirectionDown();
-      if(isValidCell(head[0]+1, head[1])){
-        if(world.board[head[0]+1][head[1]].isFruit()){
+      if(isValidCell(destination[0]+1, destination[1])){
+        Integer[] newHead = {destination[0]+1, destination[1] };
+        if(world.board[destination[0]+1][destination[1]].isFruit()){
           eat();
-          world.spawnFruit();
-          world.board[head[0]][head[1]].setTail();
-          world.board[head[0]-1][head[1]].setHead();
-          Integer[] newHead = {head[0]+1, head[1]};
           cells.addFirst(newHead);
         }
-        else if(world.board[head[0]+1][head[1]].isEmpty()){
-          Integer[] newHead = {head[0]+1, head[1]};
-          cells.removeLast();
-          world.board[last[0]][last[1]].setEmpty();
-          Integer[] newLast = cells.get(cells.size() - 1);
+        else if(world.board[destination[0]+1][destination[1]].isEmpty()){
           cells.addFirst(newHead);
-          world.board[newLast[0]][newLast[1]].setLast();
-          world.board[head[0]][head[1]].setTail();
-          world.board[head[0]+1][head[1]].setHead();
-
+          cells.removeLast();
         }
       } else {
         //GAME OVER
       }
     } else if(direction == Direction.L && direction != Direction.R) {
-      Integer[] head = cells.getFirst();
-      Integer[] last = cells.getLast();
+      Integer[] destination = cells.getFirst();
       setDirectionLeft();
-      if(isValidCell(head[0], head[1]-1)){
-        if(world.board[head[0]][head[1]-1].isFruit()){
+      if(isValidCell(destination[0], destination[1]-1)){
+        Integer[] newHead = {destination[0], destination[1]-1 };
+        if(world.board[destination[0]][destination[1]-1].isFruit()){
           eat();
-          world.spawnFruit();
-          world.board[head[0]][head[1]].setTail();
-          world.board[head[0]][head[1]-1].setHead();
-          Integer[] newHead = {head[0], head[1]-1};
           cells.addFirst(newHead);
         }
-        else if(world.board[head[0]][head[1]-1].isEmpty()){
-          world.board[last[0]][last[1]].setEmpty();
-          Integer[] newHead = {head[0], head[1]-1};
-          cells.removeLast();
-          Integer[] newLast = cells.getLast();
+        else if(world.board[destination[0]][destination[1]-1].isEmpty()){
           cells.addFirst(newHead);
-          world.board[newLast[1]][newLast[0]].setLast();
-          world.board[head[0]][head[1]].setTail();
-          world.board[head[0]][head[1]-1].setHead();
+          cells.removeLast();
         }
       } else {
         //GAME OVER
       }
 
     } else if(direction == Direction.R && direction != Direction.L){
-      Integer[] head = cells.getFirst();
-      Integer[] last = cells.getLast();
+      Integer[] destination = cells.getFirst();
       setDirectionRight();
-      if(isValidCell(head[0], head[1]+1)){
-        if(world.board[head[0]][head[1]+1].isFruit()){
+      if(isValidCell(destination[0], destination[1]+1)){
+        Integer[] newHead = {destination[0], destination[1]+1 };
+        if(world.board[destination[0]][destination[1]+1].isFruit()){
           eat();
-          world.spawnFruit();
-          world.board[head[0]][head[1]].setTail();
-          world.board[head[0]][head[1]+1].setHead();
-          Integer[] newHead = {head[0], head[1]+1};
           cells.addFirst(newHead);
         }
-        else if(world.board[head[0]][head[1]+1].isEmpty()){
-          world.board[last[1]][last[0]].setEmpty();
-          Integer[] newHead = {head[0], head[1]+1};
-          cells.removeLast();
-          Integer[] newLast = cells.getLast();
+        else if(world.board[destination[0]][destination[1]+1].isEmpty()){
           cells.addFirst(newHead);
-          world.board[newLast[1]-1][newLast[0]+1].setLast();
-          world.board[head[0]][head[1]].setTail();
-          world.board[head[0]][head[1]+1].setHead();
-
+          cells.removeLast();
         }
       } else {
         //GAME OVER
       }
+      world.refreshWorldState();
     }
   }
 
@@ -164,6 +126,7 @@ public class Snake {
   }
 
   public void eat() {
+    world.spawnFruit();
     //SCORE +
   }
 
