@@ -55,17 +55,18 @@ public class World {
       spawnFruit();
   }
 
-  public Integer[] getFruit(){
-    Integer y = null;
-    Integer x = null;
+  public Integer[] getFruit() {
+    int x = (int) (Math.random() * height);
+    int y = (int) (Math.random() * width);
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        if(board[i][j].isFruit())
+        if (board[i][j].isFruit()) {
           y = i;
           x = j;
+        }
       }
     }
-    Integer fruit[] = {y,x};
+    Integer fruit[] = {y, x};
     return fruit;
   }
 
@@ -78,20 +79,18 @@ public class World {
       }
     }
 
-      //System.out.println(fruit[0] + " " + fruit[1]);
-      board[fruit[0]][fruit[1]].setFruit();
+    board[fruit[0]][fruit[1]].setFruit();
 
-      LinkedList<Integer[]> serpent = snake.getCells();
-      for(int k=0; k < serpent.size(); k++){
-        if(k==0){
-          Integer[] current = serpent.get(k);
-          board[current[0]][current[1]].setHead();
-        }
-        else {
-          Integer[] current = serpent.get(k);
-          board[current[0]][current[1]].setTail();
-        }
+    LinkedList<Integer[]> serpent = snake.getCells();
+    for (int k = 0; k < serpent.size(); k++) {
+      if (k == 0) {
+        Integer[] current = serpent.get(k);
+        board[current[0]][current[1]].setHead();
+      } else {
+        Integer[] current = serpent.get(k);
+        board[current[0]][current[1]].setTail();
       }
+    }
   }
 
   public void setSnake(Snake snake) {
