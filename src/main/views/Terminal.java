@@ -1,6 +1,6 @@
-package views;
-import models.*;
-import timer.Timer;
+package main.views;
+import main.models.*;
+import main.timer.Timer;
 
 public class Terminal {
   public static void main() {

@@ -110,7 +110,7 @@ Timer (Thread) {
 
 Explication :
 
-Lors d’un déplacement, le snake reçoit une nouvelle direction, puis à la reception du tick par le timer, la tête va alors modifier ses coordonnées selon la direction.
+Lors d’un déplacement, le snake reçoit une nouvelle direction, puis à la reception du tick par le main.timer, la tête va alors modifier ses coordonnées selon la direction.
 Pour ce qui est de la queue, elle suit les mouvements de la tête. Pour chaque déplacement, on enlève la dernière partie de la queue, on déplace la tête dans la direction reçue et l’ancienne position de la tête devient une partie de la queue.
 
 Déplacement avec comme direction R (Snake simple):

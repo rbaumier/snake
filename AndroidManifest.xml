@@ -5,15 +5,16 @@
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="17"/>
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:theme="@style/GreenSnake">
-        <activity android:name="activities.MainActivity"
+        <activity android:name="main.activities.MainActivity"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-      <activity android:name="activities.ParametersActivity"/>
-      <activity android:name="activities.GameActivity"/>
-      <activity android:name="activities.ScoresActivity"/>
+      <activity android:name="main.activities.ParametersActivity"/>
+      <activity android:name="main.activities.GameActivity"/>
+      <activity android:name="main.activities.ScoresActivity"/>
+      <uses-library android:name="android.test.runner" />
     </application>
 </manifest>

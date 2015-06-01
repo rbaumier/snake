@@ -1,6 +1,6 @@
-package activities;
+package main.activities;
 
-import DAO.database;
+import main.dao.database;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,14 +10,13 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Editable;
 import android.widget.EditText;
 import android.widget.TextView;
-import models.Snake;
-import models.World;
+import main.models.Snake;
+import main.models.World;
 import net.epsi.YoloSnake.R;
-import timer.Timer;
-import views.GameView;
+import main.timer.Timer;
+import main.views.GameView;
 
 
 public class GameActivity extends Activity {

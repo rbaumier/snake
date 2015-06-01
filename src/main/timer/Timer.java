@@ -1,4 +1,4 @@
-package timer;
+package main.timer;
 
 import android.os.Handler;
 

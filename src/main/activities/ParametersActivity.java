@@ -1,4 +1,4 @@
-package activities;
+package main.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import DAO.database;
+import main.dao.database;
 import net.epsi.YoloSnake.R;
 
 public class ParametersActivity extends Activity {

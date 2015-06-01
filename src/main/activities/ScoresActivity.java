@@ -1,11 +1,11 @@
-package activities;
+package main.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import DAO.database;
-import models.Player;
+import main.dao.database;
+import main.models.Player;
 import net.epsi.YoloSnake.R;
 
 import java.util.ArrayList;

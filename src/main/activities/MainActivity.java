@@ -1,6 +1,6 @@
-package activities;
+package main.activities;
 
-import DAO.database;
+import main.dao.database;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;

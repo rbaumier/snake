@@ -32,3 +32,6 @@ proguard/
 
 
 project.properties
+bin.unaligned
+out.unaligned
+snake.iml

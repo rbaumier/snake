@@ -1,4 +1,4 @@
-package views;
+package main.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,12 +8,8 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import models.Cell;
-import models.Snake;
-import models.World;
-import net.epsi.YoloSnake.R;
+import main.models.Cell;
+import main.models.World;
 
 public class GameView extends View implements View.OnTouchListener {
   World world;
