@@ -56,26 +56,30 @@ public class World {
   }
 
   public Integer[] getFruit(){
-    Integer[] fruit = new Integer[2];
+    Integer y = null;
+    Integer x = null;
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         if(board[i][j].isFruit())
-          fruit[0] = i;
-          fruit[1] = j;
+          y = i;
+          x = j;
       }
     }
+    Integer fruit[] = {y,x};
     return fruit;
   }
 
   public void refreshWorldState() {
+    Integer[] fruit = getFruit();
+
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         board[i][j].setEmpty();
       }
     }
-      Integer[] fruit = getFruit();
-      System.out.println(fruit[0] + " " + fruit[1]);
-      //board[fruit[0]][fruit[1]].setFruit();
+
+      //System.out.println(fruit[0] + " " + fruit[1]);
+      board[fruit[0]][fruit[1]].setFruit();
 
       LinkedList<Integer[]> serpent = snake.getCells();
       for(int k=0; k < serpent.size(); k++){
