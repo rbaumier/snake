@@ -23,34 +23,19 @@ mouvements de la tête.
 
 ### Format du jeu
 
-Le plateau du jeu est un carré de 50 cases de côté.
-
-Modes de jeu :
-- Survival Mode
-- Arcade Mode
-
-
-#### Survival Mode
-
-Choisissez votre niveau et essayer d’atteindre le plus haut score possible sans entrer en collision avec un mur ou le corps du serpent.
-
-
-#### Arcade Mode
-
-Vous commencez au niveau 1 et devez atteindre le score de 25 pour passer au niveau suivant. Le fait de passer au niveau supérieur augmente petit à petit la difficulté.
-
+Le plateau du jeu est un carré de 20 cases de côté pour 30 cases de hauteur par défaut. La largeur et la hauteur du monde sont configurables.
 
 ### Itérations
 
 - Par défault le snake avance tout droit.
-- Il change de direction lorsque l'utilisateur appuye sur l'écran, il se déplace vers le doigt de l'utilisateur (à calculer).
+- Il change de direction lorsque l'utilisateur appuye sur l'écran, il se déplace dans le sens des aigilles d'une montre.
 - Perd quand le snake est coincé (par lui-même ou le bord de la map).
 - Le snake grossit lorsqu’il mange un objet.
-- Sauvegarder les meilleurs scores et afficher le classement à la fin d’une partie.
-- Bouton pause/quitter(&sauvegarder?) la partie.
+- Demande le nom du joueur et sauvegarde son score.
+- Le bouton retour affiche
 - Consulter les meilleurs scores depuis le menu principal.
-
-
+- Reset les scores depuis le menu principal
+- Jouer une musique, permettre sa désactivation depuis les settings.
 
 ## Modèle
 ```
@@ -108,7 +93,6 @@ Timer (Thread) {
 ```
 
 
-
 ### Initialisation
 
 - Instanciation du monde + appel de la méthode fill() pour remplir le monde de cellules vides
@@ -159,12 +143,6 @@ Déplacement avec comme direction D (Snake complexe):
 
 ### Règles
 Le monde sera composé de 600 cases. Il fera 30 cases de hauteur et 20 cases de largeur.
-- mode arcade : Le but de ce mode de jeu est d'atteindre le niveau le plus élevé possible. Le serpent augmente à chaque fruit mangé.
-Le niveau augmente tous les 25 fruits mangés. Des murs sont générés automatiquement et de façon aléatoire sur la carte.
-Un mur prend une case de largeur. Plus le niveau est élevé, plus les murs seront nombreux.
-Les murs seront placés de façon à ce que le fruit soit toujours atteignable par le snake sans mourir (comprendre qu'il ne peut pas y avoir de voies sans issues).
-- mode survival : il consiste à tenir le plus longtemps possible sur la map, qui prend tout l'écran, sans murs, et ne se renouvèle pas.
-Le serpent grossit d'une cases à chaque fois qu'il mange le fruit.
 
 Le snake ne peut se déplacer que sur des cases vides ou occupées par un fruit. Il ne peut se déplacer que d'une case à la fois (vers le haut, le bas, la gauche ou la droite).
 Les cases occupées par le snake seront représentées d'une couleur différente des cases vides.
@@ -179,7 +157,8 @@ Les "High scores" comprennent les 10 meilleurs scores classés par ordre décroi
 Dans le cas où il n'y a aucun score d'enregistré, un message "Pas de score" sera affiché.
 La longueur d'un pseudo sera de 20 charactères maximum. Les "scores" pourront être remis à zéro via le bouton "reset" présent dans les paramètres de l'application.
 
-### Position des éléments
+### Position des éléments (Infographie)
+
 Afin de dessiner notre board (qui contiendra les cases du jeu), nous effectuerons les calculs suivants (pseudo-code) :
 ```
 largeurCase = largeurEcran / nombreCasesLargeur

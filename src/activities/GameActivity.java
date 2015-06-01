@@ -10,6 +10,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Editable;
+import android.widget.EditText;
 import android.widget.TextView;
 import models.Snake;
 import models.World;
@@ -19,7 +21,7 @@ import views.GameView;
 
 
 public class GameActivity extends Activity {
-  private Handler handler;
+  private static Handler handler;
   private GameView gameView;
   private MediaPlayer player;
   private World world;
@@ -34,12 +36,13 @@ public class GameActivity extends Activity {
     gameView = (GameView) findViewById(R.id.gameview);
     final TextView scores = (TextView) findViewById(R.id.gamescores);
 
-    this.handler = new Handler() {
+    handler = new Handler() {
       @Override
       public void handleMessage(Message message) {
         if (world.snake.gameOver) {
           gameOver();
           world.snake.gameOver = false;
+          System.out.println("plop");
         }
         snake.move(snake.direction);
         updateView(scores);
@@ -58,25 +61,28 @@ public class GameActivity extends Activity {
   }
 
   private void gameOver() {
-    final Activity self = this;
     pause();
-    new AlertDialog.Builder(this)
-      .setIcon(android.R.drawable.ic_dialog_alert)
-      .setTitle("Game Over, your score is " + world.player.score)
-      .setMessage("What do you want ?")
-      .setNeutralButton("Restart", new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-          initialize();
-        }
-      })
-      .setNegativeButton("Leave", new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-          self.startActivity(new Intent(self, MainActivity.class));
-        }
-      })
-      .show();
-  }
+    AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
+    alert.setTitle("What is your name?");
+
+    final EditText input = new EditText(this);
+    alert.setView(input);
+
+    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {
+        Editable value = input.getText();
+      }
+    });
+
+    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {
+        // Canceled.
+      }
+    });
+
+    alert.show();
+  }
 
   private void startTimer() {
     timer = new Timer(500);
