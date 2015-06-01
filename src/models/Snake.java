@@ -6,6 +6,7 @@ public class Snake {
   private final World world;
   public Direction direction;
   private LinkedList<Integer[]> cells = new LinkedList<>();
+  public boolean gameOver = false;
 
   public enum Direction {
     U, // Up
@@ -73,7 +74,7 @@ public class Snake {
 
         }
       } else {
-        //GAME OVER
+        gameOver = true;
       }
     } else if(direction == Direction.D && direction != Direction.U) {
       Integer[] head = cells.getFirst();
@@ -100,7 +101,7 @@ public class Snake {
 
         }
       } else {
-        //GAME OVER
+        gameOver = true;
       }
     } else if(direction == Direction.L && direction != Direction.R) {
       Integer[] head = cells.getFirst();
@@ -126,7 +127,7 @@ public class Snake {
           world.board[head[0]][head[1]-1].setHead();
         }
       } else {
-        //GAME OVER
+        gameOver = true;
       }
 
     } else if(direction == Direction.R && direction != Direction.L){
@@ -154,7 +155,7 @@ public class Snake {
 
         }
       } else {
-        //GAME OVER
+        gameOver = true;
       }
     }
   }

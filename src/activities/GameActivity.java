@@ -37,22 +37,49 @@ public class GameActivity extends Activity {
     this.handler = new Handler() {
       @Override
       public void handleMessage(Message message) {
+        if (world.snake.gameOver) {
+          gameOver();
+          world.snake.gameOver = false;
+        }
         snake.move(snake.direction);
         updateView(scores);
       }
     };
 
+    initialize();
+  }
+
+  private void initialize() {
     world = new World(20, 30);
     gameView.initWorld(world);
-
     snake = new Snake(world);
-
     startTimer();
     playMusicIfActivated();
   }
 
+  private void gameOver() {
+    final Activity self = this;
+    pause();
+    new AlertDialog.Builder(this)
+      .setIcon(android.R.drawable.ic_dialog_alert)
+      .setTitle("Game Over, your score is " + world.player.score)
+      .setMessage("What do you want ?")
+      .setNeutralButton("Restart", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+          initialize();
+        }
+      })
+      .setNegativeButton("Leave", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+          self.startActivity(new Intent(self, MainActivity.class));
+        }
+      })
+      .show();
+  }
+
+
   private void startTimer() {
-    timer = new Timer(1000);
+    timer = new Timer(500);
     timer.handler = handler;
     new Thread(timer).start();
     world.spawnFruit();
@@ -66,17 +93,17 @@ public class GameActivity extends Activity {
   }
 
   @Override
-  public void onBackPressed(){
+  public void onBackPressed() {
     final Activity self = this;
     pause();
-    if(database.musicActivated())
+    if (database.musicActivated())
       player.stop();
 
     new AlertDialog.Builder(this)
       .setIcon(android.R.drawable.ic_dialog_alert)
       .setTitle("Pause")
       .setMessage("What do you want ?")
-      .setPositiveButton("Resume", new DialogInterface.OnClickListener() {
+      .setNeutralButton("Resume", new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
           startTimer();
         }

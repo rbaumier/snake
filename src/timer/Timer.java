@@ -27,6 +27,5 @@ public class Timer implements Runnable {
       handler.sendEmptyMessage(0);
     }
   }
-
 }
 
