@@ -74,6 +74,7 @@ public class GameActivity extends Activity {
       public void onClick(DialogInterface dialog, int whichButton) {
         world.player.name = String.valueOf(input.getText());
         database.addScore(world.player);
+        stopMusic();
         self.startActivity(new Intent(self, MainActivity.class));
       }
     });
@@ -98,8 +99,6 @@ public class GameActivity extends Activity {
   public void onBackPressed() {
     final Activity self = this;
     pause();
-    if (database.musicActivated())
-      player.stop();
 
     new AlertDialog.Builder(this)
       .setIcon(android.R.drawable.ic_dialog_alert)
@@ -112,10 +111,16 @@ public class GameActivity extends Activity {
       })
       .setNegativeButton("Leave", new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
+          stopMusic();
           self.startActivity(new Intent(self, MainActivity.class));
         }
       })
       .show();
+  }
+
+  private void stopMusic() {
+    if (database.musicActivated())
+      player.stop();
   }
 
   private void pause() {
