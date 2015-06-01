@@ -55,4 +55,8 @@ public final class database {
     editor.commit();
     return newMusicValue;
   }
+
+  public static boolean musicActivated() {
+    return pref.getBoolean("music", false);
+  }
 }

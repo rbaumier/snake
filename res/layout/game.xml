@@ -2,8 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-  >
+              android:layout_height="fill_parent">
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:background="@color/primarygreen"
+    >
+
+    <TextView
+      android:id="@+id/gamescores"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/gamescores"
+      android:textSize="25dp"
+      android:gravity="center"
+      android:textColor="@color/bgwhite"
+      android:textStyle="bold"
+      />
+
+  </LinearLayout>
 
   <views.GameView
     android:id="@+id/gameview"

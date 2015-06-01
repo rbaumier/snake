@@ -7,4 +7,5 @@
   <string name="highscores">High Scores</string>
   <string name="resetscores">Reset Scores</string>
   <string name="settingstitle">Settings</string>
+  <string name="gamescores">0</string>
 </resources>
