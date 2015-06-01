@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Snake {
   private final World world;
-  private Direction direction;
+  public Direction direction;
   private LinkedList<Integer[]> cells = new LinkedList<>();
 
   public enum Direction {
@@ -169,13 +169,13 @@ public class Snake {
 
   public void rotate() {
     if (isDirectionUp()) {
-      setDirectionRight();
+      move(Direction.R);
     } else if (isDirectionRight()) {
-      setDirectionDown();
+      move(Direction.D);
     } else if (isDirectionDown()) {
-      setDirectionLeft();
+      move(Direction.L);
     } else {
-      setDirectionUp();
+      move(Direction.U);
     }
   }
 

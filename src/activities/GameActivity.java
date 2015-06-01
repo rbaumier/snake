@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.TextView;
-import models.Player;
 import models.Snake;
 import models.World;
 import net.epsi.YoloSnake.R;
@@ -25,6 +24,7 @@ public class GameActivity extends Activity {
   private MediaPlayer player;
   private World world;
   private Timer timer;
+  private Snake snake;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class GameActivity extends Activity {
     this.handler = new Handler() {
       @Override
       public void handleMessage(Message message) {
+        snake.move(snake.direction);
         updateView(scores);
       }
     };
@@ -44,7 +45,7 @@ public class GameActivity extends Activity {
     world = new World(20, 30);
     gameView.initWorld(world);
 
-    Snake snake = new Snake(world);
+    snake = new Snake(world);
 
     startTimer();
     playMusicIfActivated();
@@ -55,15 +56,12 @@ public class GameActivity extends Activity {
     timer.handler = handler;
     new Thread(timer).start();
     world.spawnFruit();
-    snake.move(Snake.Direction.U);
-    snake.move(Snake.Direction.R);
-    snake.move(Snake.Direction.D);
   }
 
   private void updateView(TextView scores) {
     gameView.invalidate();
     scores.setText(
-      String.valueOf(world.player.score++) // OUBLIE PAS DE VIRER LE ++ HEIN
+      String.valueOf(world.player.score)
     );
   }
 
@@ -76,16 +74,16 @@ public class GameActivity extends Activity {
 
     new AlertDialog.Builder(this)
       .setIcon(android.R.drawable.ic_dialog_alert)
-      .setTitle("Leave")
-      .setMessage("Do you really want to leave ? :(")
-      .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-          self.startActivity(new Intent(self, MainActivity.class));
-        }
-      })
-      .setNegativeButton("No", new DialogInterface.OnClickListener() {
+      .setTitle("Pause")
+      .setMessage("What do you want ?")
+      .setPositiveButton("Resume", new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
           startTimer();
+        }
+      })
+      .setNegativeButton("Leave", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+          self.startActivity(new Intent(self, MainActivity.class));
         }
       })
       .show();
