@@ -49,8 +49,8 @@ public class World {
   public void spawnFruit() {
     int randomHeight = (int) (Math.random() * height);
     int randomWidth = (int) (Math.random() * width);
-    if (board[randomWidth][randomHeight].isEmpty())
-      board[randomWidth][randomHeight].setFruit();
+    if (board[randomHeight][randomWidth].isEmpty())
+      board[randomHeight][randomWidth].setFruit();
     else
       spawnFruit();
   }

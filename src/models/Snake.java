@@ -4,8 +4,9 @@ import java.util.LinkedList;
 
 public class Snake {
   private final World world;
-  private Direction direction;
+  public Direction direction;
   private LinkedList<Integer[]> cells = new LinkedList<>();
+  public boolean gameOver = false;
 
   public enum Direction {
     U, // Up
@@ -66,7 +67,7 @@ public class Snake {
           cells.removeLast();
         }
       } else {
-        //GAME OVER
+        gameOver = true;
       }
     } else if(direction == Direction.D && direction != Direction.U) {
       Integer[] destination = cells.getFirst();
@@ -82,7 +83,7 @@ public class Snake {
           cells.removeLast();
         }
       } else {
-        //GAME OVER
+        gameOver = true;
       }
     } else if(direction == Direction.L && direction != Direction.R) {
       Integer[] destination = cells.getFirst();
@@ -98,7 +99,7 @@ public class Snake {
           cells.removeLast();
         }
       } else {
-        //GAME OVER
+        gameOver = true;
       }
 
     } else if(direction == Direction.R && direction != Direction.L){
@@ -115,7 +116,7 @@ public class Snake {
           cells.removeLast();
         }
       } else {
-        //GAME OVER
+        gameOver = true;
       }
       world.refreshWorldState();
     }
@@ -132,13 +133,13 @@ public class Snake {
 
   public void rotate() {
     if (isDirectionUp()) {
-      setDirectionRight();
+      move(Direction.R);
     } else if (isDirectionRight()) {
-      setDirectionDown();
+      move(Direction.D);
     } else if (isDirectionDown()) {
-      setDirectionLeft();
+      move(Direction.L);
     } else {
-      setDirectionUp();
+      move(Direction.U);
     }
   }
 
