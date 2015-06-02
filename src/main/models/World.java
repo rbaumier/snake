@@ -3,11 +3,14 @@ package main.models;
 import java.util.LinkedList;
 
 public class World implements SnakeControl, GamePlayer {
-  private int width;
-  private int height;
+  public int width;
+  public int height;
   private Snake snake;
+
   private Cell[][] board;
   private Player player;
+  private boolean gameOver;
+  private char[] playerScore;
 
   public World(int width, int height) {
     this.width = width;
@@ -112,7 +115,6 @@ public class World implements SnakeControl, GamePlayer {
     }
   }
 
-
   public boolean isNotBusyCell(int x, int y) {
     return height > y && y >= 0 &&
       width > x && x >= 0 &&
@@ -145,7 +147,7 @@ public class World implements SnakeControl, GamePlayer {
         }
         refreshWorldState();
       } else {
-        // game over
+        gameOver = true;
       }
     } else if (direction == Direction.D && direction != Direction.U) {
       Integer[] dest = snake.getHead();
@@ -161,7 +163,7 @@ public class World implements SnakeControl, GamePlayer {
         }
         refreshWorldState();
       } else {
-        // game over
+        gameOver = true;
       }
     } else if (direction == Direction.L && direction != Direction.R) {
       Integer[] dest = snake.getHead();
@@ -177,7 +179,7 @@ public class World implements SnakeControl, GamePlayer {
         }
         refreshWorldState();
       } else {
-        // game over
+        gameOver = true;
       }
     } else if (direction == Direction.R && direction != Direction.L) {
       Integer[] dest = snake.getHead();
@@ -193,9 +195,39 @@ public class World implements SnakeControl, GamePlayer {
         }
         refreshWorldState();
       } else {
-        // game over
+        gameOver = true;
       }
     }
   }
 
+  public boolean isGameOver() {
+    return gameOver;
+  }
+
+  public void gameOver() { gameOver = true; }
+
+  public void moveSnakeSameDirection() {
+    moveSnake(snake.getCurrentDirection());
+  }
+
+  public String getPlayerName() {
+    return player.getName();
+  }
+
+  public String setPlayerName(String name) {
+    player.setName(name);
+  }
+
+  public Player getPlayer() {
+    return player;
+  }
+
+  public int getPlayerScore() {
+    return player.getScore();
+  }
+
+  public Cell getCell(int x, int y) {
+    return board[x][y];
+  }
 }
+

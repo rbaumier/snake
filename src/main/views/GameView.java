@@ -53,13 +53,11 @@ public class GameView extends View implements View.OnTouchListener {
   }
 
   private int getCellColor(int x, int y) {
-    Cell cell = world.board[x][y];
+    Cell cell = world.getCell(x, y);
     if (cell.isEmpty()) {
       return color("#CFD8DC");
     } else if (cell.isFruit()) {
       return color("#F44336");
-    } else if (cell.isWall()) {
-      return color("#795548");
     } else if (cell.isHead()) {
       return color("#1B5E20");
     } else { // is tail or last
@@ -74,7 +72,7 @@ public class GameView extends View implements View.OnTouchListener {
   @Override
   public boolean onTouch(View v, MotionEvent e) {
     if (e.getAction() == MotionEvent.ACTION_DOWN) {
-      world.snake.rotate();
+      world.rotateSnake();
       this.invalidate();
     }
     return true;
