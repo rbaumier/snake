@@ -3,7 +3,6 @@ package main.models;
 public class Cell {
   private State state;
 
-
   private enum State {
     empty,
     fruit,

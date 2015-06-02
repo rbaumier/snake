@@ -2,16 +2,16 @@ package main.models;
 
 import java.util.LinkedList;
 
-public class World {
+public class World implements SnakeControl, GamePlayer{
   private int width;
   private int height;
   private Snake snake;
   private Cell[][] board;
   private Player player;
 
-  public World(int w, int h) {
-    width = w;
-    height = h;
+  public World(int width, int height) {
+    this.width = width;
+    this.height = height;
     board = fillBoard(new Cell[height][width]);
     player = new Player();
   }
@@ -32,8 +32,8 @@ public class World {
   }
 
   public Integer[] getFruit() {
-    int x = (int) (Math.random() * width);
-    int y = (int) (Math.random() * height);
+    int x = random(width);
+    int y = random(height);
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
         if (board[i][j].isFruit()) {
@@ -49,11 +49,7 @@ public class World {
   public void refreshWorldState() {
     Integer[] fruit = getFruit();
 
-    for (int i = 0; i < height; i++) {
-      for (int j = 0; j < width; j++) {
-        board[i][j].setEmpty();
-      }
-    }
+    cleanAllCells();
 
     board[fruit[0]][fruit[1]].setFruit();
     LinkedList<Integer[]> serpent = snake.getCells();
@@ -68,10 +64,19 @@ public class World {
     }
   }
 
+  private void cleanAllCells() {
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        board[i][j].setEmpty();
+      }
+    }
+  }
+
   private int random(int max) {
     return (int) (Math.random() * max);
   }
 
+  @Override
   public void spawnSnake() {
     int x = height / 2;
     int y = width / 2;
@@ -89,6 +94,25 @@ public class World {
     return new Integer[]{x, y};
   }
 
+  @Override
+  public void makeSnakeEat() {
+
+  }
+
+  @Override
+  public void rotateSnake() {
+    if (snake.isDirectionUp()) {
+      moveSnake(Direction.R);
+    } else if (snake.isDirectionRight()) {
+      moveSnake(Direction.D);
+    } else if (snake.isDirectionDown()) {
+      moveSnake(Direction.L);
+    } else {
+      moveSnake(Direction.U);
+    }
+  }
+
+
   public boolean isNotBusyCell(int x, int y) {
     return height > y && y >= 0 &&
       width > x && x >= 0 &&
@@ -98,4 +122,85 @@ public class World {
   public Cell getRandomCell() {
     return board[random(height)][random(width)];
   }
+
+  @Override
+  public void increaseScores() {
+
+  }
+
+  @Override
+  public void moveSnake(Direction direction) {
+      if(direction == Direction.U && direction != Direction.D){
+        Integer[] destination = body.getFirst();
+        setDirectionUp();
+        if(isNotBusy(destination[1], destination[0]-1)){
+          Integer[] newHead = {destination[0]-1, destination[1] };
+          if(world.board[destination[0]-1][destination[1]].isFruit()){
+            eat();
+            body.addFirst(newHead);
+          }
+          else if(world.board[destination[0]-1][destination[1]].isEmpty()){
+            body.addFirst(newHead);
+            body.removeLast();
+          }
+          world.refreshWorldState();
+        } else {
+          gameOver = true;
+        }
+      } else if(direction == Direction.D && direction != Direction.U) {
+        Integer[] destination = body.getFirst();
+        setDirectionDown();
+        if(isNotBusy(destination[1], destination[0]+1)){
+          Integer[] newHead = {destination[0]+1, destination[1] };
+          if(world.board[destination[0]+1][destination[1]].isFruit()){
+            eat();
+            body.addFirst(newHead);
+          }
+          else if(world.board[destination[0]+1][destination[1]].isEmpty()){
+            body.addFirst(newHead);
+            body.removeLast();
+          }
+          world.refreshWorldState();
+        } else {
+          gameOver = true;
+        }
+      } else if(direction == Direction.L && direction != Direction.R) {
+        Integer[] destination = body.getFirst();
+        setDirectionLeft();
+        if(isNotBusy(destination[1]-1, destination[0])){
+          Integer[] newHead = {destination[0], destination[1]-1 };
+          if(world.board[destination[0]][destination[1]-1].isFruit()){
+            eat();
+            body.addFirst(newHead);
+          }
+          else if(world.board[destination[0]][destination[1]-1].isEmpty()){
+            body.addFirst(newHead);
+            body.removeLast();
+          }
+          world.refreshWorldState();
+        } else {
+          gameOver = true;
+        }
+
+      } else if(direction == Direction.R && direction != Direction.L){
+        Integer[] destination = body.getFirst();
+        setDirectionRight();
+        if(isNotBusy(destination[1]+1, destination[0])){
+          Integer[] newHead = {destination[0], destination[1]+1 };
+          if(world.board[destination[0]][destination[1]+1].isFruit()){
+            eat();
+            body.addFirst(newHead);
+          }
+          else if(world.board[destination[0]][destination[1]+1].isEmpty()){
+            body.addFirst(newHead);
+            body.removeLast();
+          }
+          world.refreshWorldState();
+        } else {
+          gameOver = true;
+        }
+
+      }
+    }
+
 }

@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.EditText;
 import android.widget.TextView;
+import main.models.Direction;
 import main.models.Snake;
 import main.models.World;
 import net.epsi.YoloSnake.R;
@@ -53,7 +54,7 @@ public class GameActivity extends Activity {
   private void initialize() {
     world = new World(20, 30);
     gameView.initWorld(world);
-    snake = new Snake(world);
+    snake = new Snake(Direction.L);
     startTimer();
     playMusicIfActivated();
   }

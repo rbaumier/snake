@@ -1,8 +1,9 @@
 package main.models;
 
 public class Player {
-  public String name;
-  public int score;
+  private String name;
+  private int score;
+  private GamePlayer gamePlayer;
 
   public Player() {
     this.name = "";
