@@ -2,7 +2,7 @@ package main.models;
 
 import java.util.LinkedList;
 
-public class World implements SnakeControl, GamePlayer{
+public class World implements SnakeControl, GamePlayer {
   private int width;
   private int height;
   private Snake snake;
@@ -101,11 +101,11 @@ public class World implements SnakeControl, GamePlayer{
 
   @Override
   public void rotateSnake() {
-    if (snake.isDirectionUp()) {
+    if (snake.isGoingUp()) {
       moveSnake(Direction.R);
-    } else if (snake.isDirectionRight()) {
+    } else if (snake.isGoingRight()) {
       moveSnake(Direction.D);
-    } else if (snake.isDirectionDown()) {
+    } else if (snake.isGoingDown()) {
       moveSnake(Direction.L);
     } else {
       moveSnake(Direction.U);
@@ -128,79 +128,74 @@ public class World implements SnakeControl, GamePlayer{
 
   }
 
+  // Coming at you soon...
   @Override
   public void moveSnake(Direction direction) {
-      if(direction == Direction.U && direction != Direction.D){
-        Integer[] destination = body.getFirst();
-        setDirectionUp();
-        if(isNotBusy(destination[1], destination[0]-1)){
-          Integer[] newHead = {destination[0]-1, destination[1] };
-          if(world.board[destination[0]-1][destination[1]].isFruit()){
-            eat();
-            body.addFirst(newHead);
-          }
-          else if(world.board[destination[0]-1][destination[1]].isEmpty()){
-            body.addFirst(newHead);
-            body.removeLast();
-          }
-          world.refreshWorldState();
-        } else {
-          gameOver = true;
+    if (direction == Direction.U && direction != Direction.D) {
+      Integer[] dest = snake.getHead();
+      snake.goUp();
+      if (isNotBusyCell(dest[1], dest[0] - 1)) {
+        Integer[] newHead = {dest[0] - 1, dest[1]};
+        if (board[dest[0] - 1][dest[1]].isFruit()) {
+          makeSnakeEat();
+          snake.addNewHead(newHead);
+        } else if (board[dest[0] - 1][dest[1]].isEmpty()) {
+          snake.addNewHead(newHead);
+          snake.removeLast();
         }
-      } else if(direction == Direction.D && direction != Direction.U) {
-        Integer[] destination = body.getFirst();
-        setDirectionDown();
-        if(isNotBusy(destination[1], destination[0]+1)){
-          Integer[] newHead = {destination[0]+1, destination[1] };
-          if(world.board[destination[0]+1][destination[1]].isFruit()){
-            eat();
-            body.addFirst(newHead);
-          }
-          else if(world.board[destination[0]+1][destination[1]].isEmpty()){
-            body.addFirst(newHead);
-            body.removeLast();
-          }
-          world.refreshWorldState();
-        } else {
-          gameOver = true;
+        refreshWorldState();
+      } else {
+        // game over
+      }
+    } else if (direction == Direction.D && direction != Direction.U) {
+      Integer[] dest = snake.getHead();
+      snake.goDown();
+      if (isNotBusyCell(dest[1], dest[0] + 1)) {
+        Integer[] newHead = {dest[0] + 1, dest[1]};
+        if (board[dest[0] + 1][dest[1]].isFruit()) {
+          makeSnakeEat();
+          snake.addNewHead(newHead);
+        } else if (board[dest[0] + 1][dest[1]].isEmpty()) {
+          snake.addNewHead(newHead);
+          snake.removeLast();
         }
-      } else if(direction == Direction.L && direction != Direction.R) {
-        Integer[] destination = body.getFirst();
-        setDirectionLeft();
-        if(isNotBusy(destination[1]-1, destination[0])){
-          Integer[] newHead = {destination[0], destination[1]-1 };
-          if(world.board[destination[0]][destination[1]-1].isFruit()){
-            eat();
-            body.addFirst(newHead);
-          }
-          else if(world.board[destination[0]][destination[1]-1].isEmpty()){
-            body.addFirst(newHead);
-            body.removeLast();
-          }
-          world.refreshWorldState();
-        } else {
-          gameOver = true;
+        refreshWorldState();
+      } else {
+        // game over
+      }
+    } else if (direction == Direction.L && direction != Direction.R) {
+      Integer[] dest = snake.getHead();
+      snake.goLeft();
+      if (isNotBusyCell(dest[1] - 1, dest[0])) {
+        Integer[] newHead = {dest[0], dest[1] - 1};
+        if (board[dest[0]][dest[1] - 1].isFruit()) {
+          makeSnakeEat();
+          snake.addNewHead(newHead);
+        } else if (board[dest[0]][dest[1] - 1].isEmpty()) {
+          snake.addNewHead(newHead);
+          snake.removeLast();
         }
-
-      } else if(direction == Direction.R && direction != Direction.L){
-        Integer[] destination = body.getFirst();
-        setDirectionRight();
-        if(isNotBusy(destination[1]+1, destination[0])){
-          Integer[] newHead = {destination[0], destination[1]+1 };
-          if(world.board[destination[0]][destination[1]+1].isFruit()){
-            eat();
-            body.addFirst(newHead);
-          }
-          else if(world.board[destination[0]][destination[1]+1].isEmpty()){
-            body.addFirst(newHead);
-            body.removeLast();
-          }
-          world.refreshWorldState();
-        } else {
-          gameOver = true;
+        refreshWorldState();
+      } else {
+        // game over
+      }
+    } else if (direction == Direction.R && direction != Direction.L) {
+      Integer[] dest = snake.getHead();
+      snake.goRight();
+      if (isNotBusyCell(dest[1] + 1, dest[0])) {
+        Integer[] newHead = {dest[0], dest[1] + 1};
+        if (board[dest[0]][dest[1] + 1].isFruit()) {
+          makeSnakeEat();
+          snake.addNewHead(newHead);
+        } else if (board[dest[0]][dest[1] + 1].isEmpty()) {
+          snake.addNewHead(newHead);
+          snake.removeLast();
         }
-
+        refreshWorldState();
+      } else {
+        // game over
       }
     }
+  }
 
 }

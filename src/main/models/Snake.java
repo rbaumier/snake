@@ -19,14 +19,17 @@ public class Snake {
     body.add(cellCoords);
   }
 
-  public boolean isDirectionUp() { return direction == Direction.U; }
-  public boolean isDirectionDown() { return direction == Direction.D; }
-  public boolean isDirectionLeft() { return direction == Direction.L; }
-  public boolean isDirectionRight() { return direction == Direction.R; }
+  public boolean isGoingUp() { return direction == Direction.U; }
+  public boolean isGoingDown() { return direction == Direction.D; }
+  public boolean isGoingLeft() { return direction == Direction.L; }
+  public boolean isGoingRight() { return direction == Direction.R; }
 
-  public void setDirectionUp() { direction = Direction.U; }
-  public void setDirectionDown() { direction = Direction.D; }
-  public void setDirectionLeft() { direction = Direction.L; }
-  public void setDirectionRight() { direction = Direction.R; }
+  public void goUp() { direction = Direction.U; }
+  public void goDown() { direction = Direction.D; }
+  public void goLeft() { direction = Direction.L; }
+  public void goRight() { direction = Direction.R; }
 
+  public void addNewHead(Integer[] newHead) { body.addFirst(newHead); }
+  public void removeLast() { body.removeLast(); }
+  public Integer[] getHead() { return body.getFirst(); }
 }
