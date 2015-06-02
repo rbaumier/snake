@@ -9,10 +9,10 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import main.models.Cell;
-import main.models.World;
+import main.models.Game;
 
 public class GameView extends View implements View.OnTouchListener {
-  World world;
+  Game game;
   Paint paint;
 
   public GameView(Context context, AttributeSet attrs) {
@@ -20,8 +20,9 @@ public class GameView extends View implements View.OnTouchListener {
     this.setOnTouchListener(this);
   }
 
-  public void initWorld(World w) {
-    world = w;
+  // to remove
+  public void init(Game w) {
+    game = w;
   }
 
   @Override
@@ -37,12 +38,12 @@ public class GameView extends View implements View.OnTouchListener {
   }
 
   private void drawCells(Canvas canvas) {
-    int offsetX = this.getWidth() / world.width;
-    int offsetY = this.getHeight() / world.height;
+    int offsetX = this.getWidth() / game.width;
+    int offsetY = this.getHeight() / game.height;
     int cellWidth = getDim(offsetX);
     int cellHeight = getDim(offsetY);
-    for (int i = 0; i < world.height; i++) {
-      for (int j = 0; j < world.width; j++) {
+    for (int i = 0; i < game.height; i++) {
+      for (int j = 0; j < game.width; j++) {
         paint.setColor(getCellColor(i, j));
         canvas.drawRect(
           drawCell(getPos(j, offsetX), getPos(i, offsetY), cellWidth, cellHeight),
@@ -53,7 +54,7 @@ public class GameView extends View implements View.OnTouchListener {
   }
 
   private int getCellColor(int x, int y) {
-    Cell cell = world.getCell(x, y);
+    Cell cell = game.getCell(x, y);
     if (cell.isEmpty()) {
       return color("#CFD8DC");
     } else if (cell.isFruit()) {
@@ -72,7 +73,8 @@ public class GameView extends View implements View.OnTouchListener {
   @Override
   public boolean onTouch(View v, MotionEvent e) {
     if (e.getAction() == MotionEvent.ACTION_DOWN) {
-      world.rotateSnake();
+      // TODO: add controller to handle this, the view shouldn't have a direct relationship with the world
+      game.rotateSnake();
       this.invalidate();
     }
     return true;

@@ -2,7 +2,7 @@ package main.models;
 
 import java.util.LinkedList;
 
-public class World implements SnakeControl, GamePlayer {
+public class Game implements SnakeControl, GamePlayer {
   public int width;
   public int height;
   private Snake snake;
@@ -12,7 +12,7 @@ public class World implements SnakeControl, GamePlayer {
   private boolean gameOver;
   private char[] playerScore;
 
-  public World(int width, int height) {
+  public Game(int width, int height) {
     this.width = width;
     this.height = height;
     board = fillBoard(new Cell[height][width]);
@@ -135,7 +135,7 @@ public class World implements SnakeControl, GamePlayer {
   // Coming at you soon...
   @Override
   public void moveSnake(Direction direction) {
-    if (direction == Direction.U && direction != Direction.D) {
+    if (direction == Direction.U) {
       Integer[] dest = snake.getHead();
       snake.goUp();
       if (isNotBusyCell(dest[1], dest[0] - 1)) {
@@ -151,7 +151,7 @@ public class World implements SnakeControl, GamePlayer {
       } else {
         gameOver = true;
       }
-    } else if (direction == Direction.D && direction != Direction.U) {
+    } else if (direction == Direction.D) {
       Integer[] dest = snake.getHead();
       snake.goDown();
       if (isNotBusyCell(dest[1], dest[0] + 1)) {
@@ -167,7 +167,7 @@ public class World implements SnakeControl, GamePlayer {
       } else {
         gameOver = true;
       }
-    } else if (direction == Direction.L && direction != Direction.R) {
+    } else if (direction == Direction.L) {
       Integer[] dest = snake.getHead();
       snake.goLeft();
       if (isNotBusyCell(dest[1] - 1, dest[0])) {
@@ -183,7 +183,7 @@ public class World implements SnakeControl, GamePlayer {
       } else {
         gameOver = true;
       }
-    } else if (direction == Direction.R && direction != Direction.L) {
+    } else if (direction == Direction.R) {
       Integer[] dest = snake.getHead();
       snake.goRight();
       if (isNotBusyCell(dest[1] + 1, dest[0])) {

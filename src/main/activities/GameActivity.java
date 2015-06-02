@@ -14,17 +14,16 @@ import android.os.Message;
 import android.widget.TextView;
 import main.models.Direction;
 import main.models.Snake;
-import main.models.World;
+import main.models.Game;
 import net.epsi.YoloSnake.R;
 import main.timer.Timer;
 import main.views.GameView;
-
 
 public class GameActivity extends Activity {
   private static Handler handler;
   private GameView gameView;
   private MediaPlayer player;
-  private World world;
+  private Game game;
   private Timer timer;
   private Snake snake;
 
@@ -39,10 +38,10 @@ public class GameActivity extends Activity {
     handler = new Handler() {
       @Override
       public void handleMessage(Message message) {
-        if (world.isGameOver()) {
+        if (game.isGameOver()) {
           gameOver();
         } else {
-          world.moveSnakeSameDirection();
+          game.moveSnakeSameDirection();
           updateView(scores);
         }
       }
@@ -52,8 +51,8 @@ public class GameActivity extends Activity {
   }
 
   private void initialize() {
-    world = new World(20, 30);
-    gameView.initWorld(world);
+    game = new Game(20, 30);
+    gameView.init(game);
     snake = new Snake(Direction.L);
     startTimer();
     playMusicIfActivated();
@@ -68,8 +67,8 @@ public class GameActivity extends Activity {
       .setView(input)
       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int whichButton) {
-          world.setPlayerName(String.valueOf(input.getText()));
-          database.addScore(world.getPlayer());
+          game.setPlayerName(String.valueOf(input.getText()));
+          database.addScore(game.getPlayer());
           stopMusic();
           self.startActivity(new Intent(self, MainActivity.class));
         }
@@ -81,13 +80,13 @@ public class GameActivity extends Activity {
     timer = new Timer(100);
     timer.handler = handler;
     new Thread(timer).start();
-    world.spawnFruit();
+    game.spawnFruit();
   }
 
   private void updateView(TextView scores) {
     gameView.invalidate();
     scores.setText(
-      String.valueOf(world.getPlayerScore())
+      String.valueOf(game.getPlayerScore())
     );
   }
 

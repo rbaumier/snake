@@ -3,7 +3,7 @@ package tests.models;
 import junit.framework.Assert;
 import android.test.AndroidTestCase;
 
-public class WorldTest extends AndroidTestCase {
+public class GameTest extends AndroidTestCase {
 
   @Override
   protected void setUp() throws Exception {
