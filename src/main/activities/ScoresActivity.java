@@ -27,7 +27,7 @@ public class ScoresActivity extends Activity {
     ArrayList<Player> scores = database.getScores();
     Collections.sort(scores, new Comparator<Player>() {
       public int compare(Player p1, Player p2) {
-        return p2.score - p1.score;
+        return p2.getScore() - p1.getScore();
       }
     });
 
@@ -48,7 +48,7 @@ public class ScoresActivity extends Activity {
     String[] scores = new String[players.size()];
     for (int i = 0; i < players.size(); i++) {
       Player current = players.get(i);
-      scores[i] = i + 1 + ". " + current.name + " - " + current.score;
+      scores[i] = i + 1 + ". " + current.getName() + " - " + current.getScore();
     }
     return scores;
   }

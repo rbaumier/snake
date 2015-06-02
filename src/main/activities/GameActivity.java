@@ -1,5 +1,6 @@
 package main.activities;
 
+import android.widget.EditText;
 import main.dao.database;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,7 +11,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.widget.EditText;
 import android.widget.TextView;
 import main.models.Direction;
 import main.models.Snake;
@@ -39,12 +39,12 @@ public class GameActivity extends Activity {
     handler = new Handler() {
       @Override
       public void handleMessage(Message message) {
-        if (world.snake.gameOver) {
+        if (world.isGameOver()) {
           gameOver();
-          world.snake.gameOver = false;
+        } else {
+          world.moveSnakeSameDirection();
+          updateView(scores);
         }
-        snake.move(snake.direction);
-        updateView(scores);
       }
     };
 
@@ -59,26 +59,22 @@ public class GameActivity extends Activity {
     playMusicIfActivated();
   }
 
-
   private void gameOver() {
-    pause();
-    AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-    alert.setTitle("Game Over");
-    alert.setMessage("What is your name?");
     final Activity self = this;
-    final EditText input = new EditText(this);
-    alert.setView(input);
+    stopTimer();
 
-    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int whichButton) {
-        world.player.name = String.valueOf(input.getText());
-        database.addScore(world.player);
-        stopMusic();
-        self.startActivity(new Intent(self, MainActivity.class));
-      }
-    });
-    alert.show();
+    final EditText input = new EditText(this);
+    alertDialog(this, "Game Over", "What is your name?")
+      .setView(input)
+      .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+          world.setPlayerName(String.valueOf(input.getText()));
+          database.addScore(world.getPlayer());
+          stopMusic();
+          self.startActivity(new Intent(self, MainActivity.class));
+        }
+      })
+      .show();
   }
 
   private void startTimer() {
@@ -91,19 +87,16 @@ public class GameActivity extends Activity {
   private void updateView(TextView scores) {
     gameView.invalidate();
     scores.setText(
-      String.valueOf(world.player.score)
+      String.valueOf(world.getPlayerScore())
     );
   }
 
   @Override
   public void onBackPressed() {
     final Activity self = this;
-    pause();
+    stopTimer();
 
-    new AlertDialog.Builder(this)
-      .setIcon(android.R.drawable.ic_dialog_alert)
-      .setTitle("Pause")
-      .setMessage("What do you want ?")
+    alertDialog(this, "Pause", "What do you want?")
       .setNeutralButton("Resume", new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
           startTimer();
@@ -118,12 +111,19 @@ public class GameActivity extends Activity {
       .show();
   }
 
+  private AlertDialog.Builder alertDialog(GameActivity context, String title, String message) {
+    return new AlertDialog.Builder(this)
+      .setIcon(android.R.drawable.ic_dialog_alert)
+      .setTitle(title)
+      .setMessage(message);
+  }
+
   private void stopMusic() {
     if (database.musicActivated())
       player.stop();
   }
 
-  private void pause() {
+  private void stopTimer() {
     timer.stop();
   }
 
