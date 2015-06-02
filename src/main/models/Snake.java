@@ -32,4 +32,16 @@ public class Snake {
   public void addNewHead(Integer[] newHead) { body.addFirst(newHead); }
   public void removeLast() { body.removeLast(); }
   public Integer[] getHead() { return body.getFirst(); }
+
+  public Direction getCurrentDirection() {
+    return direction;
+  }
+
+  public Direction getDirection() {
+    return direction;
+  }
+
+  public void setDirection(Direction direction) {
+    this.direction = direction;
+  }
 }
