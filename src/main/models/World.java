@@ -17,6 +17,8 @@ public class World implements SnakeControl, GamePlayer {
     this.height = height;
     board = fillBoard(new Cell[height][width]);
     player = new Player();
+    snake = new Snake(Direction.L);
+    spawnSnake();
   }
 
   private Cell[][] fillBoard(Cell[][] b) {
@@ -214,7 +216,7 @@ public class World implements SnakeControl, GamePlayer {
     return player.getName();
   }
 
-  public String setPlayerName(String name) {
+  public void setPlayerName(String name) {
     player.setName(name);
   }
 
