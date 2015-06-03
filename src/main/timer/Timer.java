@@ -3,13 +3,17 @@ package main.timer;
 import android.os.Handler;
 
 public class Timer implements Runnable {
-  public Handler handler;
-
+  private Handler handler;
   private int refreshTime;
   private boolean running = true;
 
-  public Timer(int refreshTime) {
+  public Timer(Handler handler, int refreshTime) {
+    this.handler = handler;
     this.refreshTime = refreshTime;
+  }
+
+  public void start() {
+    running = true;
   }
 
   public void stop() {
