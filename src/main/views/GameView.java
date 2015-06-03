@@ -12,12 +12,17 @@ import main.models.Cell;
 import main.models.Game;
 
 public class GameView extends View implements View.OnTouchListener {
-  Game game;
-  Paint paint;
+  private GameEventListener gameEventListener;
+  private Game game;
+  private Paint paint;
 
   public GameView(Context context, AttributeSet attrs) {
     super(context, attrs);
     this.setOnTouchListener(this);
+  }
+
+  public void setEventListener(GameEventListener gameEventListener) {
+    this.gameEventListener = gameEventListener;
   }
 
   // to remove
@@ -73,11 +78,14 @@ public class GameView extends View implements View.OnTouchListener {
   @Override
   public boolean onTouch(View v, MotionEvent e) {
     if (e.getAction() == MotionEvent.ACTION_DOWN) {
-      // TODO: add controller to handle this, the view shouldn't have a direct relationship with the world
-      game.rotateSnake();
-      this.invalidate();
+      gameEventListener.onTouch();
+      repaint();
     }
     return true;
+  }
+
+  private void repaint() {
+    this.invalidate();
   }
 
   public Rect drawCell(int posX, int posY, int width, int height) {

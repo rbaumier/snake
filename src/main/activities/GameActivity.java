@@ -16,6 +16,7 @@ import main.models.Direction;
 import main.models.Player;
 import main.models.Snake;
 import main.models.Game;
+import main.views.GameEventListener;
 import net.epsi.YoloSnake.R;
 import main.timer.Timer;
 import main.views.GameView;
@@ -31,6 +32,8 @@ public class GameActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.game);
     gameView = (GameView) findViewById(R.id.gameview);
+    gameView.setEventListener(getEventListener());
+
     init();
   }
 
@@ -121,5 +124,14 @@ public class GameActivity extends Activity {
         return true;
       }
     });
+  }
+
+  public GameEventListener getEventListener() {
+    return new GameEventListener() {
+      @Override
+      public void onTouch() {
+        game.rotateSnake();
+      }
+    };
   }
 }
