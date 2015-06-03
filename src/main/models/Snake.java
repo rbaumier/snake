@@ -5,7 +5,6 @@ import java.util.LinkedList;
 public class Snake {
   private Direction direction;
   private LinkedList<Integer[]> body = new LinkedList<>();
-  private SnakeControl control;
 
   public Snake(Direction d) {
     direction = d;

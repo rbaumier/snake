@@ -2,23 +2,25 @@ package main.models;
 
 import java.util.LinkedList;
 
-public class Game implements SnakeControl, GamePlayer {
+public class Game implements SnakeDriver, GamePlayer {
   public int width;
   public int height;
-  private Snake snake;
-
   private Cell[][] board;
   private Player player;
   private boolean gameOver;
-  private char[] playerScore;
+  private Snake snake;
 
-  public Game(int width, int height) {
+  public Game(int width, int height, Player player, Snake snake) {
     this.width = width;
     this.height = height;
-    board = fillBoard(new Cell[height][width]);
-    player = new Player();
-    snake = new Snake(Direction.L);
+    this.board = fillBoard(new Cell[height][width]);
+    this.snake = snake;
+    this.player = player;
+  }
+
+  public void start() {
     spawnSnake();
+    spawnFruit();
   }
 
   private Cell[][] fillBoard(Cell[][] b) {
