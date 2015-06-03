@@ -103,7 +103,8 @@ public class Game implements SnakeDriver, GamePlayer {
 
   @Override
   public void makeSnakeEat() {
-
+    increaseScore();
+    spawnFruit();
   }
 
   @Override
@@ -127,11 +128,6 @@ public class Game implements SnakeDriver, GamePlayer {
 
   public Cell getRandomCell() {
     return board[random(height)][random(width)];
-  }
-
-  @Override
-  public void increaseScores() {
-
   }
 
   // Coming at you soon...
@@ -204,18 +200,21 @@ public class Game implements SnakeDriver, GamePlayer {
     }
   }
 
+  @Override
+  public void increaseScore() {
+    player.increaseScore();
+  }
+
   public boolean isGameOver() {
     return gameOver;
   }
 
-  public void gameOver() { gameOver = true; }
+  public void gameOver() {
+    gameOver = true;
+  }
 
   public void moveSnakeSameDirection() {
     moveSnake(snake.getCurrentDirection());
-  }
-
-  public String getPlayerName() {
-    return player.getName();
   }
 
   public void setPlayerName(String name) {

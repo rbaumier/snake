@@ -25,9 +25,9 @@ public class GameView extends View implements View.OnTouchListener {
     this.gameEventListener = gameEventListener;
   }
 
-  // to remove
-  public void init(Game w) {
-    game = w;
+  // this is so ugly...
+  public void init(Game game) {
+    this.game = game;
   }
 
   @Override

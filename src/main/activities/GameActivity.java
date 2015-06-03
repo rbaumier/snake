@@ -34,11 +34,12 @@ public class GameActivity extends Activity {
     gameView = (GameView) findViewById(R.id.gameview);
     gameView.setEventListener(getEventListener());
 
-    init();
+    init(gameView);
   }
 
-  private void init() {
+  private void init(GameView gameView) {
     game = new Game(20, 30, new Player(), new Snake(Direction.L));
+    gameView.init(game);
     game.start();
     timer = new Timer(getNewHandler(), 100);
     new Thread(timer).start();
